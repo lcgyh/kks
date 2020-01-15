@@ -1,0 +1,7 @@
+{
+    "navigationStyle": "custom",
+    "disableSwipeBack": true,
+    "usingComponents": {
+        "van-popup": "../../../vant-weapp/popup/index"
+    }
+}

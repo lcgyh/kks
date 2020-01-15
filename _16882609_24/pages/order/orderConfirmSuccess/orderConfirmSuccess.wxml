@@ -1,0 +1,8 @@
+<view class="orderSuccessPage">
+    <icon class="orderSuccessIcon" color="#30BE76" size="{{80}}" type="success"></icon>
+    <view class="orderSuccessTitle">实付金额 ￥{{priceFormat.priceFormat(options.payAmount)}}</view>
+    <image class="haowuquanImage" src="../../../images/common/haowuquan_recomment.png"></image>
+    <button bindtap="goHomePage" class="goHomePageButton">返回首页</button>
+    <button bindtap="goOrderDetail" class="goOrderDetailButton">查看订单详情</button>
+</view>
+<wxs module="priceFormat" src="../../../utils/priceFormat.wxs" />

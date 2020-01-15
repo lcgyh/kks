@@ -1,0 +1,23 @@
+<view wx:if="{{spShop!=null}}">
+    <view class="header">
+        <image class="shopPic" mode="aspectFill" src="{{spShop.picUrlAll.length>10?spShop.picUrlAll:'../../../images/user/defaultShop.png'}}"></image>
+        <view class="headerRightView">
+            <view class="shopName">{{spShop.sname}} × KKID潮奢母婴联名店</view>
+            <view class="shopAdress">{{spShop.city.name}}{{spShop.area.name}}{{spShop.address}}</view>
+        </view>
+    </view>
+    <view class="buttonFather">
+        <view class="titleView">实体店联系方式</view>
+        <view class="contentView">{{spShop.contactName}} {{spShop.contactTel}}</view>
+        <button bindtap="phoneCall" class="displaybutton">拨打电话</button>
+    </view>
+    <view class="titleView">实体店名称</view>
+    <view class="contentView">{{spShop.name}}</view>
+    <view class="titleView">店铺介绍</view>
+    <view class="contentView">{{spShop.description}}</view>
+    <view class="buttonFather">
+        <view class="titleView">KKID品牌授权开通日期</view>
+        <view class="contentView">{{openTime}}</view>
+        <button openType="contact" sendMessageImg="{{spShop.picUrlAll}}" sendMessagePath="/pages/user/login/login?spShopId={{spShop.spShopId}}" sendMessageTitle="关于{{spShop.sname}} × KKID联名店" showMessageCard="{{true}}">在线咨询</button>
+    </view>
+</view>

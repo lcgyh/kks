@@ -1,0 +1,1032 @@
+.spuDetailPage {
+    position: relative;
+}
+
+.goTop {
+    position: fixed;
+    z-index: 95;
+    right: 25rpx;
+    bottom: 180rpx;
+    width: 114rpx;
+    height: 114rpx;
+    background-color: transparent;
+    background-size: 100%;
+}
+
+.spuDetailPageInfo {
+    position: relative;
+}
+
+.status-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 44px;
+    z-index: 90;
+}
+
+.navBarView {
+    position: relative;
+    height: 44px;
+}
+
+.backButtonImage {
+    position: absolute;
+    width: 36rpx;
+    height: 36rpx;
+    left: 32rpx;
+}
+
+.backButton {
+    position: absolute;
+    width: 60rpx;
+    top: 0;
+    bottom: 0;
+    left: 20rpx;
+}
+
+.firstBackImage {
+    position: absolute;
+    left: 32rpx;
+    width: 176rpx;
+    height: 62rpx;
+}
+
+.swiperView {
+    position: relative;
+}
+
+.navBarTitle {
+    color: #363737;
+    line-height: 46px;
+    font-size: 38rpx;
+    font-weight: bold;
+    text-align: center;
+}
+
+.swiper-box {
+    height: 750rpx;
+    width: 100%;
+    text-align: center;
+    position: relative;
+}
+
+.slide-image {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-num {
+    position: absolute;
+    right: 32rpx;
+    bottom: 32rpx;
+    font-size: 18rpx;
+    color: #272727;
+    font-weight: bold;
+}
+
+.favImage {
+    z-index: 5;
+    position: absolute;
+    bottom: 28rpx;
+    left: 40rpx;
+    width: 36rpx;
+    height: 36rpx;
+}
+
+.spuBasicInfo {
+    margin: 0 40rpx;
+}
+
+.brandAndSpuSaleAllQty {
+    margin-top: 40rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brandName {
+    color: #363737;
+    font-size: 40rpx;
+    font-weight: bold;
+}
+
+.spuSaleAllQty {
+    color: #b2b2b2;
+    font-size: 22rpx;
+}
+
+.spuName {
+    margin-top: 24rpx;
+    color: #363737;
+    font-size: 26rpx;
+}
+
+.spuTagView {
+    margin-top: 8rpx;
+    height: 34rpx;
+    overflow: hidden;
+}
+
+.spuTagView view {
+    display: inline-block;
+    font-size: 18rpx;
+    padding: 0 12rpx;
+    height: 34rpx;
+    line-height: 36rpx;
+    border-radius: 0px 5.6rpx 5.6rpx 5.6rpx;
+    color: #E84B57;
+    background-color: rgba(232,75,87,0.1);
+    vertical-align: top;
+    margin-left: 8rpx;
+}
+
+.spuTagView .spuTag {
+    color: #5f7fdc;
+    background-color: rgba(95,127,220,0.1);
+    margin-left: 0;
+}
+
+.priceAndCountry {
+    margin-top: 40rpx;
+    height: 68rpx;
+    position: relative;
+}
+
+.priceView {
+    color: #5f7fdc;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.priceSymbol {
+    font-size: 32rpx;
+    line-height: 32rpx;
+    margin-bottom: 4rpx;
+}
+
+.priceInfo {
+    font-weight: bold;
+    font-size: 64rpx;
+    line-height: 64rpx;
+}
+
+.priceInfoOriginal {
+    text-decoration: line-through;
+    font-size: 32rpx;
+    line-height: 32rpx;
+    color: #b2b2b2;
+    margin-left: 12rpx;
+    margin-bottom: 4rpx;
+}
+
+.country {
+    position: absolute;
+    right: 0;
+    bottom: 13rpx;
+    height: 26rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.country image {
+    height: 26rpx;
+    width: 26rpx;
+    border-radius: 13rpx;
+}
+
+.country view {
+    margin-left: 10rpx;
+    line-height: 26rpx;
+    font-size: 26rpx;
+    color: #363737;
+}
+
+.mkDiscountView {
+    margin-top: 16rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 0px 10rpx 10rpx 10rpx;
+    color: #e84b57;
+    background-color: rgba(232,75,87,0.10);
+    font-size: 26rpx;
+    padding: 0 16rpx;
+    height: 65rpx;
+}
+
+.discountImage {
+    height: 30rpx;
+    width: 30rpx;
+    margin-right: 8rpx;
+}
+
+.discountSymbol {
+    margin: 0 8rpx;
+    opacity: 0.5;
+}
+
+.subtitle {
+    margin-top: 56rpx;
+    color: #363737;
+    font-size: 36rpx;
+    font-weight: bold;
+}
+
+.description {
+    margin-top: 24rpx;
+    color: #363737;
+    font-size: 22rpx;
+}
+
+.explainInfo {
+    height: 96rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 40rpx;
+    border-top: 1rpx solid #e6e6e6;
+    border-bottom: 1rpx solid #e6e6e6;
+}
+
+.explainInfoTitle {
+    font-size: 26rpx;
+    color: #363737;
+    font-weight: bold;
+    margin-right: 24rpx;
+}
+
+.explainInfoInfo {
+    font-size: 22rpx;
+    color: #363737;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.explainInfoImage {
+    margin-left: 16rpx;
+    height: 20rpx;
+    width: 20rpx;
+}
+
+.spuType {
+    margin: 0 40rpx;
+    padding: 56rpx 0 72rpx;
+    border-bottom: 1rpx solid rgba(230,230,230,0.5);
+    position: relative;
+}
+
+.spuTypeTitle {
+    color: #363737;
+    font-size: 26rpx;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.spuTypeTitlePrice {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.chooseSkuPriceDiscount {
+    font-size: 22rpx;
+}
+
+.chooseSkuPrice {
+    font-size: 22rpx;
+    text-decoration: line-through;
+    color: #b2b2b2;
+    margin-left: 8rpx;
+}
+
+.spuTypeTable {
+    margin-top: 56rpx;
+}
+
+.typeTitleView {
+    font-size: 22rpx;
+    line-height: 22rpx;
+    position: relative;
+    margin-bottom: 12rpx;
+}
+
+.typeTitle {
+    color: #363737;
+    display: inline-block;
+    font-weight: bold;
+    height: 100%;
+}
+
+.typeChooseInfo {
+    color: #b2b2b2;
+    display: inline-block;
+    height: 100%;
+    margin-left: 16rpx;
+}
+
+.spaceTypeValueTable {
+    display: inline-block;
+    width: 20rpx;
+    height: 76rpx;
+    margin-top: 20rpx;
+    overflow: hidden;
+    vertical-align: top;
+    background-color: transparent;
+}
+
+.typeValueTable {
+    display: inline-block;
+    width: 205rpx;
+    height: 76rpx;
+    margin-top: 20rpx;
+    border-radius: 10rpx;
+    overflow: hidden;
+    text-align: center;
+    line-height: 76rpx;
+    font-size: 24rpx;
+    vertical-align: top;
+    border: 1rpx solid #e6e6e6;
+    color: #b2b2b2;
+}
+
+.typeValueTable_selected {
+    border-color: #5f7fdc;
+    color: #5f7fdc;
+}
+
+.typeValueTable_normal {
+    border-color: #e6e6e6;
+    color: #363737;
+}
+
+.typeValueTable_disabled {
+    border-color: #e6e6e6;
+    color: #b2b2b2;
+}
+
+.commentView {
+    padding: 48rpx 0rpx 40rpx;
+    margin: 0 40rpx;
+    border-bottom: 1rpx solid rgba(230,230,230,0.5);
+}
+
+.commentViewHeader {
+    height: 74rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.commentViewHeaderLeft {
+    color: #363737;
+    font-size: 26rpx;
+    font-weight: bold;
+}
+
+.commentViewHeaderRight {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    color: #272727;
+    font-size: 24rpx;
+}
+
+.commentViewHeaderRight image {
+    margin-left: 8rpx;
+    height: 20rpx;
+    width: 20rpx;
+}
+
+.commentUserInfo {
+    margin-top: 32rpx;
+    height: 48rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.commentUserInfo image {
+    width: 48rpx;
+    height: 48rpx;
+    border-radius: 24rpx;
+    border: 1rpx solid #e6e6e6;
+}
+
+.commentUserInfo view {
+    color: #272727;
+    font-size: 22rpx;
+    font-weight: bold;
+    margin-left: 8rpx;
+}
+
+.commentInfo {
+    margin-left: 56rpx;
+}
+
+.commentContent {
+    color: #272727;
+    font-size: 20rpx;
+    margin-top: 8rpx;
+}
+
+.commentScroll {
+    margin-top: 16rpx;
+    height: 196rpx;
+    width: 614rpx;
+    white-space: nowrap;
+}
+
+.commentScrollImage {
+    height: 196rpx;
+    width: 196rpx;
+    margin-right: 20rpx;
+    border-radius: 10rpx;
+    border: 1rpx solid #e6e6e6;
+}
+
+.skunameShort {
+    margin-top: 16rpx;
+    color: #B2B2B2;
+    font-size: 20rpx;
+}
+
+.commentContentBottom {
+    height: 32rpx;
+}
+
+.commentContentBottomLine {
+    border-bottom: 1rpx solid rgba(230,230,230,0.5);
+}
+
+.commentLookAllButton {
+    margin: 0 230rpx;
+    height: 77rpx;
+    border: 1rpx solid #e6e6e6;
+    font-size: 24rpx;
+    color: #363737;
+    border-radius: 8rpx;
+    background-color: white;
+    line-height: 75rpx;
+}
+
+.commentLookAllButton::after {
+    border: none;
+}
+
+.SpuDetails {
+    margin: 0 40rpx;
+    padding-bottom: 64rpx;
+    border-bottom: 1rpx solid rgba(230,230,230,0.5);
+}
+
+.SpuDetailsTitle {
+    margin-top: 56rpx;
+    margin-bottom: 40rpx;
+    color: #272727;
+    font-size: 26rpx;
+    font-weight: bold;
+}
+
+.SpuDetailsCell {
+    padding: 16rpx 0;
+    display: flex;
+    font-size: 22rpx;
+    color: #363737;
+    position: relative;
+}
+
+.SpuDetailsLeft {
+    position: absolute;
+    width: 88rpx;
+    height: 22rpx;
+    left: 0;
+    top: 22rpx;
+    line-height: 22rpx;
+    opacity: 50%;
+    overflow: hidden;
+    color: rgba(54,55,55,0.5);
+}
+
+.SpuDetailsRight {
+    margin-left: 144rpx;
+}
+
+.spuDescriptionList {
+    margin: 0;
+}
+
+.spuDescriptionList view {
+    margin-top: 56rpx;
+    margin-left: 40rpx;
+    margin-bottom: 40rpx;
+    color: #272727;
+    font-size: 26rpx;
+    font-weight: bold;
+}
+
+.spuDescriptionList image {
+    width: 100%;
+    display: flex;
+}
+
+.footer {
+    position: fixed;
+    display: flex;
+    z-index: 90;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+}
+
+.footerView {
+    width: 100%;
+    height: 120rpx;
+    position: relative;
+    margin: 0 40rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footerLeftView {
+    height: 88rpx;
+    text-align: center;
+    position: relative;
+    font-size: 0;
+}
+
+.footerLeftView image {
+    width: 40rpx;
+    height: 40rpx;
+    margin-top: 4rpx;
+}
+
+.footerLeftView view {
+    color: #363737;
+    font-size: 20rpx;
+    line-height: 20rpx;
+    margin-top: 14rpx;
+}
+
+.footerLeftView button {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+}
+
+.footerLeftView button::after {
+    border: none;
+}
+
+.footerLeftView .cartNum {
+    position: absolute;
+    top: 2rpx;
+    left: 36rpx;
+    height: 22rpx;
+    border-radius: 11rpx;
+    background-color: #e84b57;
+    color: white;
+    font-size: 16rpx;
+    line-height: 22rpx;
+    padding: 0 6rpx;
+    margin-top: 0;
+    z-index: 3;
+    text-align: center;
+    min-width: 10rpx;
+}
+
+.footerButtonView {
+    width: 408rpx;
+    height: 88rpx;
+}
+
+.footerButtonView button {
+    height: 100%;
+    width: 100%;
+    border-radius: 8rpx;
+    font-size: 36rpx;
+    border: none;
+    color: white;
+    background-color: #5f7fdc;
+    line-height: 88rpx;
+    padding: 0;
+}
+
+.footerButtonView button::after {
+    border: none;
+}
+
+.footerButtonView .saleStatus_0 {
+    color: #b2b2b2;
+    background-color: white;
+    border: 1rpx solid #e6e6e6;
+}
+
+.footerButtonView .addCardButton {
+    display: inline-block;
+    width: 50%;
+    border-radius: 8rpx 0 0 8rpx;
+    font-size: 32rpx;
+    background-color: #E84B57;
+}
+
+.footerButtonView .buyButton {
+    display: inline-block;
+    width: 50%;
+    font-size: 32rpx;
+    border-radius: 0 8rpx 8rpx 0;
+}
+
+van-action-sheet {
+    z-index: 99;
+}
+
+.shareSheetView {
+    background-color: white;
+    border-radius: 30rpx 30rpx 0 0;
+}
+
+.shareSheetHeader {
+    padding: 96rpx 56rpx 0;
+    height: 26rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.shareSheetHeaderLine {
+    height: 12rpx;
+    border-bottom: 1rpx solid #e6e6e6;
+    width: 240rpx;
+}
+
+.shareSheetHeaderTitle {
+    color: #272727;
+    font-size: 26rpx;
+    line-height: 26rpx;
+}
+
+.shareSheetConsultant {
+    margin: 32rpx 56rpx 0;
+    font-size: 22rpx;
+    color: #363737;
+    line-height: 22rpx;
+    text-align: center;
+}
+
+.shareSheetButtonView {
+    margin: 56rpx 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.shareSheetButton {
+    font-size: 18rpx;
+    text-align: center;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    line-height: 18rpx;
+}
+
+.shareSheetButton::after {
+    border: none;
+}
+
+.shareSheetButtonMiddle {
+    margin: 0 80rpx;
+}
+
+.shareSheetButton image {
+    width: 129rpx;
+    height: 129rpx;
+    margin-bottom: 16rpx;
+}
+
+.shareSheetButtonTitle {
+    margin-top: 8rpx;
+    color: #272727;
+    font-weight: normal;
+    font-size: 18rpx;
+}
+
+.recommendView {
+    padding: 1rpx 40rpx 80rpx;
+    text-align: center;
+}
+
+.recommendViewTitle {
+    font-weight: bold;
+    font-size: 26rpx;
+    color: #5f7fdc;
+    display: inline-block;
+}
+
+.recommendViewTitle1 {
+    font-weight: bold;
+    font-size: 26rpx;
+    color: #b2b2b2;
+    display: inline-block;
+}
+
+.recommendViewContent {
+    font-size: 22rpx;
+    color: #363737;
+    margin-top: 34rpx;
+}
+
+.cancelButton {
+    margin: 0 40rpx 8rpx;
+    border-top: 1rpx solid #e6e6e6;
+    color: #272727;
+    font-size: 32rpx;
+    height: 94rpx;
+    line-height: 94rpx;
+    background-color: white;
+}
+
+.cancelButton::after {
+    border: none;
+}
+
+.typeSheetView {
+    position: relative;
+    padding-top: 42rpx;
+}
+
+.typeSheetImage {
+    position: absolute;
+    width: 187rpx;
+    height: 187rpx;
+    border-radius: 10rpx;
+    left: 40rpx;
+    top: 0rpx;
+    border: 1rpx solid #e6e6e6;
+}
+
+.typeSheetInfo {
+    background-color: white;
+    width: 100%;
+    border-top-right-radius: 30rpx;
+}
+
+.typeSheetHeaderView {
+    padding: 0 40rpx 0 244rpx;
+    height: 146rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+
+.typeSheetClose {
+    position: absolute;
+    top: 24rpx;
+    right: 40rpx;
+    width: 45rpx;
+    height: 45rpx;
+}
+
+.typeSheetHeaderRight {
+    flex: 1;
+}
+
+.typeSheetPrice {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    color: #5f7fdc;
+    font-size: 54rpx;
+    font-weight: bold;
+}
+
+.typeSheetPriceSymbol {
+    font-size: 32rpx;
+    font-weight: normal;
+    margin-bottom: 8rpx;
+}
+
+.typeSheetPriceSymbol1 {
+    font-size: 32rpx;
+    font-weight: normal;
+    margin-bottom: 16rpx;
+    color: #272727;
+}
+
+.typeSheetPriceSymbol2 {
+    font-size: 32rpx;
+    margin-left: 8rpx;
+    color: #b2b2b2;
+    text-decoration: line-through;
+    margin-bottom: 8rpx;
+}
+
+.typeSheetPdSkuTypeValsOnlyValStr {
+    font-size: 22rpx;
+    color: #b2b2b2;
+}
+
+.typeSheetSpuType {
+    margin: 0 40rpx 0 20rpx;
+    padding: 0 0 54rpx;
+    position: relative;
+}
+
+.typeSheetSroll {
+    max-height: 650rpx;
+}
+
+.buyNumHandleView {
+    height: 60rpx;
+    overflow: scroll;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 40rpx 64rpx;
+}
+
+.buyNumHandleTitle {
+    color: #363737;
+    font-weight: bold;
+    font-size: 22rpx;
+}
+
+.buyNumHandleRight {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 38rpx;
+    font-weight: bold;
+    text-align: center;
+}
+
+.buyNumJianJia {
+    height: 60rpx;
+    width: 50rpx;
+    line-height: 56rpx;
+}
+
+.buyNumJianJiaDisable {
+    color: #9a9b9b;
+}
+
+.buyNumNum {
+    height: 60rpx;
+    width: 50rpx;
+    line-height: 60rpx;
+}
+
+.typeSheetButton {
+    border-radius: 8rpx;
+    font-size: 36rpx;
+    border: none;
+    color: white;
+    background-color: #5f7fdc;
+    margin: 16rpx 40rpx;
+}
+
+.typeSheetButton::after {
+    border: none;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 999px;
+    width: 750px;
+    height: 1334px;
+}
+
+.shareImage {
+    width: 525rpx;
+    height: 934rpx;
+}
+
+.shareImageDownLoadButton {
+    color: white;
+    font-size: 18rpx;
+    text-align: center;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    width: 129rpx;
+    margin-left: 198rpx;
+}
+
+.shareImageDownLoadButton::after {
+    border: none;
+}
+
+.shareImageDownLoadButton image {
+    width: 129rpx;
+    height: 129rpx;
+}
+
+.shareImageDownLoadButton view {
+    line-height: 18rpx;
+}
+
+van-popup .van-center-enter-to {
+    background-color: transparent;
+}
+
+.explainShowTitle {
+    height: 112rpx;
+    border-bottom: 1rpx solid #e6e6e6;
+    color: #272727;
+    font-weight: bold;
+    text-align: center;
+    line-height: 112rpx;
+    margin: 0 40rpx;
+}
+
+.explainShowInfo {
+    height: 400rpx;
+    margin: 40rpx 40rpx 0;
+    font-size: 24rpx;
+    color: #272727;
+    line-height: 30rpx;
+}
+
+.explainShowButton {
+    margin: 0 40rpx 32rpx;
+    background-color: #5f7fdc;
+    color: white;
+    font-size: 36rpx;
+    border-radius: 10rpx;
+}
+
+.explainShowButton::after {
+    border: none;
+}
+
+.popupDeliverShowInfo {
+    max-height: 600rpx;
+    width: 670rpx;
+    margin: 40rpx 40rpx 0;
+    font-size: 24rpx;
+    color: #272727;
+    line-height: 30rpx;
+}
+
+.popupDeliverTitleView {
+    font-size: 26rpx;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    color: #5f7fdc;
+}
+
+.popupDeliverTitleViewLeft {
+    width: 5rpx;
+    height: 25rpx;
+    border-radius: 2.5rpx;
+    background-color: #5f7fdc;
+    margin-right: 8rpx;
+}
+
+.popupDeliverContent {
+    margin-top: 16rpx;
+    margin-bottom: 64rpx;
+    color: #6B6B6B;
+    line-height: 32rpx;
+}
+
+.popupDeliverContent {
+    font-size: 22rpx;
+    color: #6B6B6B;
+    line-height: 32rpx;
+}
+
+.bigPicImage {
+    width: 750rpx;
+    display: flex;
+}

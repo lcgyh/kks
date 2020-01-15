@@ -1,0 +1,11 @@
+{
+    "usingComponents": {
+        "product-item": "../../components/product-item/product-item",
+        "teach-dialog": "../../components/teach-dialog/teach-dialog",
+        "ux-dialog": "../../components/dialog/dialog"
+    },
+    "navigationStyle": "default",
+    "navigationBarTitleText": "推荐到微信圈子",
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#FFFFFF"
+}

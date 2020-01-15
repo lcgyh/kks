@@ -1,0 +1,45 @@
+<view class="emptyPage" wx:if="{{mkDiscount!=null&&activeEnd}}">
+    <image src="../../../images/order/order-list-empty.png"></image>
+    <view>活动已结束或无效活动</view>
+    <button bindtap="goBackPage">去首页</button>
+</view>
+<view class="limitPage" wx:if="{{mkDiscount!=null&&!activeEnd}}">
+    <view class="headerView">
+        <image class="headerViewBackImage" src="../../../images/spu/limitTimeHeader.png"></image>
+        <view class="TopLimitTime">
+            <view>距{{mkDiscount.startTime>nowTime?'开抢':'结束'}}</view>
+            <view class="limitTimeView" style="margin-left: 10rpx;">{{limitTimeInfo.hours}}</view>
+            <view>:</view>
+            <view class="limitTimeView">{{limitTimeInfo.minutes}}</view>
+            <view>:</view>
+            <view class="limitTimeView" style="margin-right: 0">{{limitTimeInfo.seconds}}</view>
+        </view>
+        <view class="activeTime">活动时间：{{dateUtil.dateFormat(mkDiscount.startTime,'MM月dd日hh:mm')}}~{{dateUtil.dateFormat(mkDiscount.endTime,limitTimeSameTime?'hh:mm':'MM月dd日hh:mm')}}</view>
+    </view>
+    <view class="tableView" wx:if="{{totalPage!=null}}">
+        <view bindtap="spuCellTap" class="cell10View" data-pditemid="{{item.pdItemId}}" wx:for="{{pageInfoList}}" wx:key="pdItemId">
+            <image class="cell10Image" lazyLoad="{{true}}" mode="aspectFill" src="{{item.pdItem.pdSpu.picUrlAll}}?x-oss-process=image/resize,w_350"></image>
+            <image class="cell10TagImage" lazyLoad="{{true}}" mode="aspectFill" src="{{item.pdItem.picUrlTagAll}}" wx:if="{{item.pdItem.picUrlTagAll.length>10}}"></image>
+            <view class="cell10RightView">
+                <view class="cell10Title">{{item.pdItem.title}}</view>
+                <view class="cell10Description">{{item.pdItem.pdItemInfo.description}}</view>
+                <view class="cell10SpuTagView">
+                    <view class="cell10SpuTag">{{item.pdItem.groupType==23?'门店现货':item.pdItem.pdSpu.type==10?'品牌直发':'跨境保税'}}</view>
+                    <view wx:for="{{item.pdItem.textTags}}" wx:for-index="tagIndex" wx:for-item="tagItem" wx:key="*this">{{tagItem}}</view>
+                </view>
+                <view class="cell10PriceAndButtonView">
+                    <view class="cell10PriceView">
+                        <view class="cell10Price1">￥</view>
+                        <view class="cell10Price2">{{priceFormat.priceFormat(item.pdItem.discountRetailPriceMin)}}</view>
+                        <view class="cell10Price3">￥{{priceFormat.priceFormat(item.pdItem.retailPriceMin)}}</view>
+                    </view>
+                    <button class="cell10Button {{item.pdItem.saleStockStatus==1?'':'cell10ButtonDisabled'}}">{{mkDiscount.startTime>nowTime?'即将开抢':item.pdItem.saleStockStatus==1?'马上抢':'抢完了'}}</button>
+                </view>
+            </view>
+        </view>
+        <view class="footerView" wx:if="{{pageInfoList.length!=0}}">{{page+1<totalPage?'加载中...':'没有更多商品了'}}</view>
+        <view style="height: {{isIphoneX?34:1}}px"></view>
+    </view>
+</view>
+<wxs module="priceFormat" src="../../../utils/priceFormat.wxs" />
+<wxs module="dateUtil" src="../../../utils/dateFormat.wxs" />

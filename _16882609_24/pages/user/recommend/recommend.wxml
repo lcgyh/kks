@@ -1,0 +1,20 @@
+<canvas canvasId="shareImg"></canvas>
+<view class="pageInfo">
+    <view class="shareImageDisplayView">
+        <image class="shareImageDisplay" src="../../../images/user/recommend.png"></image>
+        <view class="shopName">{{shopInfo.name}}</view>
+        <view class="shopAddress">{{shopInfo.city.name}}{{shopInfo.area.name}}{{shopInfo.address}}</view>
+        <image class="sharePicCodeImage" src="{{sharePicCodeUrl}}"></image>
+    </view>
+    <view class="shareSheetConsultant" wx:if="{{spShopConsultant!=null}}">你是本店顾问{{spShopConsultant.name}}，越多分享，越多收获</view>
+    <view class="shareSheetButtonView">
+        <button class="shareSheetButton shareSheetButtonLeft" openType="share">
+            <image src="../../../images/spu/share_wechat.png"></image>
+            <view>发送给朋友</view>
+        </button>
+        <button catchtap="savePhoto" class="shareSheetButton">
+            <image src="../../../images/spu/share_download.png"></image>
+            <view>保存到手机</view>
+        </button>
+    </view>
+</view>

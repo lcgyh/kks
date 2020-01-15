@@ -1,0 +1,26 @@
+<view class="activityPage" wx:if="{{totalPage!=null}}">
+    <view bindtap="spuCellTap" class="spuListCell" data-pditemid="{{item.pdItemId}}" style="margin-right: {{index%2==0?40:0}}rpx;" wx:for="{{pageInfoList}}" wx:key="pdItemId">
+        <image class="spuImage" lazyLoad="{{true}}" mode="aspectFill" src="{{item.pdItem.pdSpu.picUrlAll}}?x-oss-process=image/resize,w_350"></image>
+        <image class="tagImage" lazyLoad="{{true}}" mode="aspectFill" src="{{item.pdItem.picUrlTagAll}}" wx:if="{{item.pdItem.picUrlTagAll.length>10}}"></image>
+        <view class="spuListSubtitle">#{{item.pdItem.pdItemInfo.subtitle}}#</view>
+        <view class="spuTitle">{{item.pdItem.title}}</view>
+        <view class="spuSpuTagView">
+            <view class="spuSpuTag">{{item.pdItem.groupType==23?'门店现货':item.pdItem.pdSpu.type==10?'品牌直发':'跨境保税'}}</view>
+            <view wx:for="{{item.pdItem.textTags}}" wx:for-index="tagIndex" wx:for-item="tagItem" wx:key="*this">{{tagItem}}</view>
+        </view>
+        <view class="spuPriceAndCountry">
+            <view class="cell20PriceView">
+                <view class="cell20Price">￥{{priceFormat.priceFormat(item.pdItem.discountRetailPriceMin)}}</view>
+                <view class="cell20Price3" hidden="{{item.pdItem.discountExistNow==false}}">￥{{priceFormat.priceFormat(item.pdItem.retailPriceMin)}}</view>
+            </view>
+            <view class="cell20Country">
+                <image lazyLoad="{{true}}" mode="aspectFill" src="{{item.pdItem.pdSpu.pdBrand.pdCountry.picUrlAll}}?x-oss-process=image/resize,w_20"></image>
+                <view>{{item.pdItem.pdSpu.pdBrand.pdCountry.name}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="footerView" wx:if="{{pageInfoList.length!=0}}">
+    {{page+1<totalPage?'加载中...':'没有更多商品了'}} </view>
+    <view style="height: {{isIphoneX?34:1}}px"></view>
+</view>
+<wxs module="priceFormat" src="../../../utils/priceFormat.wxs" />

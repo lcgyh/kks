@@ -1,0 +1,54 @@
+page {
+    background-color: #f4f4f4;
+}
+
+.pageInfo {
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.orderSuccessPage {
+    text-align: center;
+    width: 100%;
+}
+
+.orderSuccessIcon {
+    margin-top: 104rpx;
+}
+
+.orderSuccessTitle {
+    margin-top: 64rpx;
+    color: #000000;
+    font-size: 32rpx;
+}
+
+.haowuquanImage {
+    margin-top: 64rpx;
+    height: 47rpx;
+    width: 184rpx;
+}
+
+.goHomePageButton {
+    margin: 112rpx 40rpx 0;
+    background-color: #5f7fdc;
+    color: white;
+    font-size: 36rpx;
+    border-radius: 10rpx;
+}
+
+.goHomePageButton::after {
+    border: none;
+}
+
+.goOrderDetailButton {
+    margin: 32rpx 40rpx 0;
+    background-color: white;
+    color: #363737;
+    font-size: 36rpx;
+    border-radius: 10rpx;
+    border: 1rpx solid #dfdfdf;
+}
+
+.goOrderDetailButton::after {
+    border: none;
+}

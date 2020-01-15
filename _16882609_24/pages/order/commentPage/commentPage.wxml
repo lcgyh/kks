@@ -1,0 +1,57 @@
+<view style="padding-top:{{systemInfo.statusBarHeight+44}}px;padding-bottom:{{isIphoneX?34:0}}px">
+    <view class="navBar" style="height: {{systemInfo.statusBarHeight+44}}px;">
+        <view class="navBarTitle" style="margin-top: {{systemInfo.statusBarHeight}}px">提交评价
+      <image class="navBarBackButtonImage" src="/images/common/pageBackblack.png"></image>
+            <view bindtap="backButtonMethod" class="backButton"></view>
+        </view>
+    </view>
+    <block wx:if="{{pageInfo!=null}}">
+        <block wx:if="{{summitSuccess==false}}">
+            <block wx:if="{{pageInfo.skuQty!=1}}">
+                <scroll-view scrollX class="scrollView">
+                    <view bindtap="handleChoosedIndex" class="scrollViewInfo" data-index="{{index}}" style="margin-right: {{index==pageInfo.ocOrderDetails.length-1?0:16}}rpx;" wx:for="{{pageInfo.ocOrderDetails}}" wx:key="ocOrderDetailId">
+                        <image class="scrollImage" src="{{pageInfo.ocOrderDetails[index].picUrlAll}}?x-oss-process=image/resize,w_350"></image>
+                        <image class="scrollImageChoosed" hidden="{{index!=choosedIndex}}" src="../../../images/order/comment_choosed.png"></image>
+                    </view>
+                </scroll-view>
+                <view class="numExplainView">本订单共有{{pageInfo.skuQty}}款商品，已评价{{pageInfo.skuQty-pageInfo.ocOrderDetails.length}}款，还需要评价{{pageInfo.ocOrderDetails.length}}款；</view>
+            </block>
+            <view class="whiteView">
+                <view class="skuInfo">
+                    <image src="{{pageInfo.ocOrderDetails[choosedIndex].picUrlAll}}?x-oss-process=image/resize,w_350"></image>
+                    <view class="skuInfoRight">
+                        <view>{{pageInfo.ocOrderDetails[choosedIndex].title}}</view>
+                        <view class="skuInfoRightSkunameShort">{{pageInfo.ocOrderDetails[choosedIndex].skunameShort}}</view>
+                    </view>
+                </view>
+                <view class="commentRateView" wx:for="{{['描述相符','物流服务','服务态度']}}" wx:key="*this">
+                    <view class="commentRateTitle">{{item}}</view>
+                    <van-rate bind:change="onChange" color="#5f7fdc" data-index="{{index}}" size="{{48*systemInfo.windowWidth/750}}" value="{{index==0?summitDataInfo.descScore:index==1?summitDataInfo.logisticsScore:summitDataInfo.serviceScore}}"></van-rate>
+                </view>
+            </view>
+            <view class="whiteView">
+                <textarea bindinput="bindinput" class="commentContent" placeholder="你对这商品满意吗？你的评价会帮助我们选择更好的商品哦~" placeholderClass="commentContentPlaceholder" value="{{summitDataInfo.content}}"></textarea>
+                <view class="commentImageViewInfo">
+                    <view class="commentImageView" wx:for="{{summitDataInfo.picUrls}}" wx:key="url">
+                        <image class="commentImage" src="{{item.urlAll}}"></image>
+                        <image bindtap="commentImageCloseButtonMethod" class="commentImageClose" data-index="{{index}}" src="../../../images/order/comment_pic_delete.png"></image>
+                    </view>
+                    <view bindtap="commentImageAdd" class="commentImageView commentImageViewAdd" hidden="{{summitDataInfo.picUrls.length==9}}">
+                        <image class="commentImageViewAddImage" src="../../../images/order/idImageAdd.png"></image>
+                        <view class="commentImageViewAddView">添加照片{{summitDataInfo.picUrls.length}}/9</view>
+                    </view>
+                </view>
+            </view>
+            <view class="anonymousView">
+                <image bindtap="anonymousStatusChange" src="{{summitDataInfo.anonymousStatus==0?'../../../images/order/comment_anonymous_no.png':'../../../images/order/comment_anonymous_yes.png'}}"></image>
+                <view>匿名评价（不显示微信头像和昵称）</view>
+            </view>
+            <view bindtap="summitButtonMethod" class="summitButton">提交评价</view>
+        </block>
+        <view class="summitSuccessPage" wx:else>
+            <icon class="summitSuccessIcon" color="#30BE76" size="{{80}}" type="success"></icon>
+            <view class="summitSuccessTitle">评价提交成功！</view>
+            <button bindtap="backButtonMethod" class="goBackButton">返回</button>
+        </view>
+    </block>
+</view>

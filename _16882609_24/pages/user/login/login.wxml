@@ -1,0 +1,1 @@
+<button bindtap="againLoginButtonMethod" class="againLoginButton" hidden="{{!loginFail}}" hoverClass="againLoginButtonHover">点击重试</button>

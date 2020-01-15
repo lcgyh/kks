@@ -1,0 +1,47 @@
+<view class="orderListPage">
+    <van-tabs animated swipeable active="{{active}}" border="{{false}}" color="#5f7fdc" swipeThreshold="{{7}}">
+        <van-tab title="{{showStatusItem.statusTitle}}" titleStyle="color:#525252;font-size: 24rpx;" wx:for="{{orderListInfo}}" wx:for-index="showStatusIndex" wx:for-item="showStatusItem" wx:key="showStatus">
+            <scroll-view scrollY bindscrolltolower="bindscrolltolower" bindscrolltoupper="bindscrolltoupper" class="orderListScrollView" data-index="{{showStatusIndex}}" style="height:{{systemInfo.screenHeight-systemInfo.statusBarHeight-44-44}}px">
+                <view class="listEmpty" wx:if="{{showStatusItem.requestStatus==10&&showStatusItem.orderList.length==0}}">
+                    <image class="listEmptyImage" src="../../../images/order/order-list-empty.png"></image>
+                    <view class="listEmptyTitle">你还没有相关的订单哦~</view>
+                    <view bindtap="goHomePage" class="listEmptyButton">逛一逛</view>
+                </view>
+                <view style="padding-bottom:{{32+(isIphoneX?68:0)}}rpx" wx:else>
+                    <view bindtap="goOrderDetail" class="orderCell" data-ocorderid="{{item.ocOrderId}}" wx:for="{{orderListInfo[showStatusIndex].orderList}}" wx:key="ocOrderId">
+                        <view class="orderCellTop">
+                            <view class="orderCellTopLeft">
+                                <image src="../../../images/order/order_type_{{item.groupType==23?'1':item.type==10?'2':'3'}}.png"></image>
+                                <view>{{item.groupType==23?'门店现货':item.type==10?'品牌直发':'跨境保税'}}</view>
+                            </view>
+                            <view class="orderStatus" style="color: {{item.showStatusStyle}}">{{item.showStatusStr}}</view>
+                        </view>
+                        <view class="orderInfo orderInfoOne" wx:if="{{item.firstOcOrderDetails.length==1}}">
+                            <image class="orderInfoOneImage" lazyLoad="{{true}}" mode="aspectFill" src="{{item.firstOcOrderDetails[0].picUrlAll}}?x-oss-process=image/resize,w_350"></image>
+                            <view class="orderInfoOneRight">
+                                <view>{{item.firstOcOrderDetails[0].title}}</view>
+                                <view class="pdSkuTypeValsOnlyValStr">{{item.firstOcOrderDetails[0].skunameShort}}</view>
+                            </view>
+                        </view>
+                        <view class="orderInfo orderInfoMore" wx:else>
+                            <image class="orderInfoMoreImage" src="{{item.firstOcOrderDetails[imageIndex].picUrlAll}}?x-oss-process=image/resize,w_350" style="margin-right:{{imageIndex==3?0:22}}rpx" wx:if="{{imageIndex<3&&item.firstOcOrderDetails.length>4||item.firstOcOrderDetails.length<5}}" wx:for="{{item.firstOcOrderDetails}}" wx:for-index="imageIndex" wx:for-item="imageItem" wx:key="ocOrderDetailId">
+                                <view class="orderInfoMoreImageQty">×{{imageItem.qty}}</view>
+                            </image>
+                            <view class="orderInfoMoreLookMore" wx:if="{{item.firstOcOrderDetails.length>4}}">查看更多</view>
+                        </view>
+                        <view class="orderCellBottom">
+                            <view class="orderCellBottomLeft"></view>
+                            <view class="orderCellBottomRight">
+                                <view>共{{item.qty}}件</view>
+                                <view class="orderCellBottomRightSymbol">|</view>
+                                <view>实付:￥{{priceFormat.priceFormat(item.totalAmount)}}</view>
+                            </view>
+                        </view>
+                    </view>
+                    <image class="haowuquanImage" src="../../../images/common/haowuquan_recomment.png" wx:if="{{orderListInfo[showStatusIndex].showStatus==40||orderListInfo[showStatusIndex].showStatus==60||orderListInfo[showStatusIndex].showStatus==80||orderListInfo[showStatusIndex].showStatus==90}}"></image>
+                </view>
+            </scroll-view>
+        </van-tab>
+    </van-tabs>
+</view>
+<wxs module="priceFormat" src="../../../utils/priceFormat.wxs" />

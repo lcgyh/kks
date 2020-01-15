@@ -1,0 +1,72 @@
+{
+  "pages": [
+    "pages/user/login/login",
+    "pages/spu/homePage/homePage",
+    "pages/spu/categoryPage/categoryPage",
+    "pages/spu/spuSearchList/spuSearchList",
+    "pages/spu/spuDetail/spuDetail",
+    "pages/spu/favouriteList/favouriteList",
+    "pages/spu/limitTimeList/limitTimeList",
+    "pages/spu/activityTimeList/activityTimeList",
+    "pages/order/cartPage/cartPage",
+    "pages/order/orderConfirm/orderConfirm",
+    "pages/order/orderConfirmSuccess/orderConfirmSuccess",
+    "pages/order/idCertification/idCertification",
+    "pages/order/orderList/orderList",
+    "pages/order/orderDetail/orderDetail",
+    "pages/order/logisticsInfo/logisticsInfo",
+    "pages/order/commentLook/commentLook",
+    "pages/order/commentPage/commentPage",
+    "pages/user/userCenter/userCenter",
+    "pages/user/aboutShop/aboutShop",
+    "pages/user/changeShop/changeShop",
+    "pages/user/recommend/recommend",
+    "pages/user/adviserDetail/adviserDetail",
+    "__plugin__/wx56c8f077de74b07c/pages/share/share",
+    "__plugin__/wx56c8f077de74b07c/pages/share-success/share-success",
+    "__plugin__/wx56c8f077de74b07c/pages/about/about"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F4F4F4"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#5f7fdc",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/spu/homePage/homePage",
+        "text": "首页",
+        "iconPath": "images/common/tabImages/tab_home.png",
+        "selectedIconPath": "images/common/tabImages/tab_home_select.png"
+      },
+      {
+        "pagePath": "pages/spu/categoryPage/categoryPage",
+        "text": "分类",
+        "iconPath": "images/common/tabImages/tab_category.png",
+        "selectedIconPath": "images/common/tabImages/tab_category_select.png"
+      },
+      {
+        "pagePath": "pages/order/cartPage/cartPage",
+        "text": "购物车",
+        "iconPath": "images/common/tabImages/tab_cart.png",
+        "selectedIconPath": "images/common/tabImages/tab_cart_select.png"
+      },
+      {
+        "pagePath": "pages/user/userCenter/userCenter",
+        "text": "我的",
+        "iconPath": "images/common/tabImages/tab_user.png",
+        "selectedIconPath": "images/common/tabImages/tab_user_select.png"
+      }
+    ]
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wx56c8f077de74b07c",
+    "wx18a25c0972e86509"
+  ],
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,57 @@
+<view class="pageInfo">
+    <view class="searchInfo">
+        <view class="searchViewLeft">
+            <image class="searchViewLeftImage" src="../../../images/spu/seachIcon.png"></image>
+            <input bindconfirm="bindconfirm" bindinput="searchInput" confirmType="search" focus="{{inputFocus}}" placeholder="输入商品名称" placeholderClass="inputPlaceholder" value="{{keywords}}"></input>
+            <image bindtap="clearInputImageMethod" class="searchViewClear " hidden="{{keywords.length==0}}" src="../../../images/spu/spu_manage_clear.png"></image>
+        </view>
+        <view bindtap="hideFilterHandle" class="searchViewRight">
+            <view>{{filterAry[choosedFilter].name}}</view>
+            <image src="../../../images/spu/spu_manage_{{hideFilter?'down':'up'}}.png"></image>
+        </view>
+    </view>
+    <view style="height: 96rpx;"></view>
+    <scroll-view scrollY bindscrolltolower="bindscrolltolower" class="pageInfoScroll" style="height: {{systemInfo.windowHeight-96*systemInfo.screenWidth/750}}px;">
+        <view class="pageInfoScrollInfo" style="min-height: {{systemInfo.windowHeight-96*systemInfo.screenWidth/750}}px;">
+            <view class="emptyPage" wx:if="{{spuList.length<1&&requestStatus==10}}">
+                <image src="../../../images/order/order-list-empty.png"></image>
+                <view>没有找到你想要的商品~</view>
+                <button bindtap="goBackPage">返回</button>
+            </view>
+            <view bindtap="goStockSpuDetail" class="spuListCell" data-pditemid="{{item.pdItemId}}" style="margin-right: {{index%2==0?40:0}}rpx;" wx:for="{{spuList}}" wx:key="pdItemId">
+                <image class="spuImage" lazyLoad="{{true}}" mode="aspectFill" src="{{item.pdSpu.picUrlAll}}?x-oss-process=image/resize,w_350"></image>
+                <image class="tagImage" lazyLoad="{{true}}" mode="aspectFill" src="{{item.picUrlTagAll}}" wx:if="{{item.picUrlTagAll.length>10}}"></image>
+                <view class="spuListSubtitle">#{{item.pdItemInfo.subtitle}}#</view>
+                <view class="spuTitle">{{item.title}}</view>
+                <view class="spuSpuTagView">
+                    <view class="spuSpuTag">{{item.groupType==23?'门店现货':item.pdSpu.type==10?'品牌直发':'跨境保税'}}</view>
+                    <view wx:for="{{item.textTags}}" wx:for-index="tagIndex" wx:for-item="tagItem" wx:key="*this">{{tagItem}}</view>
+                </view>
+                <view class="spuPriceAndCountry">
+                    <view class="cell20PriceView">
+                        <view class="cell20Price">￥{{priceFormat.priceFormat(item.discountRetailPriceMin)}}</view>
+                        <view class="cell20Price3" hidden="{{item.discountExistNow==false}}">￥{{priceFormat.priceFormat(item.retailPriceMin)}}</view>
+                    </view>
+                    <view class="cell20Country">
+                        <image lazyLoad="{{true}}" mode="aspectFill" src="{{item.pdSpu.pdBrand.pdCountry.picUrlAll}}?x-oss-process=image/resize,w_20"></image>
+                        <view>{{item.pdSpu.pdBrand.pdCountry.name}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="footerView" wx:if="{{spuList.length!=0&&requestStatus==10}}">
+        {{page+1<totalPage?'加载中...':'没有更多商品了'}} </view>
+            <view style="height: {{isIphoneX?34:1}}px"></view>
+        </view>
+    </scroll-view>
+    <view bindtap="hideFilterHandle" class="filterView" hidden="{{hideFilter}}" style="height: {{systemInfo.windowHeight-96*systemInfo.screenWidth/750}}px;">
+        <view catchtap="noBind" class="filterViewInfo">
+            <view bindtap="chooseFilter" class="filterCell" data-index="{{index}}" wx:for="{{filterAry}}" wx:key="name">
+                <view>
+                    <image hidden="{{index!=choosedFilter}}" src="../../../images/spu/spu_manage_filter.png"></image>
+                </view>
+                <view class="filterCellTitle {{index==choosedFilter?'filterCellTitleChoosed':''}}">{{item.name}}</view>
+            </view>
+        </view>
+    </view>
+</view>
+<wxs module="priceFormat" src="../../../utils/priceFormat.wxs" />

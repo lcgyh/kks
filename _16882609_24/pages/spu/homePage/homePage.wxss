@@ -1,0 +1,829 @@
+.homePage {
+    position: relative;
+    font-size: 0;
+    padding: 1rpx 0rpx;
+}
+
+.addMineImage {
+    position: fixed;
+    width: 496rpx;
+    height: 211rpx;
+    top: 100rpx;
+    right: 0rpx;
+    z-index: 9;
+}
+
+.addMineImageClose {
+    position: absolute;
+    width: 70rpx;
+    height: 70rpx;
+    right: 19rpx;
+    top: 75rpx;
+    z-index: 10;
+}
+
+.navBarView {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+}
+
+.navBarViewBar {
+    background-color: #5f7fdc;
+}
+
+.navBarViewTitle {
+    height: 44px;
+    line-height: 44px;
+    font-size: 40rpx;
+    padding-left: 40rpx;
+    color: white;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+.navSearchView {
+    background-color: white;
+    padding: 16rpx 40rpx;
+}
+
+.searchView {
+    background-color: #f4f4f4;
+    border-radius: 15rpx;
+    height: 88rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchView image {
+    height: 32rpx;
+    width: 32rpx;
+    margin-right: 16rpx;
+}
+
+.searchView view {
+    color: #b2b2b2;
+    font-size: 28rpx;
+}
+
+.goTop {
+    position: fixed;
+    z-index: 5;
+    right: 25rpx;
+    bottom: 60rpx;
+    width: 114rpx;
+    height: 114rpx;
+    background-color: transparent;
+    background-size: 100%;
+}
+
+.headerBackImage {
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    width: 750rpx;
+    height: 706rpx;
+}
+
+.shopInfo {
+    padding: 0 40rpx;
+}
+
+.shopTitle1 {
+    margin-top: 216rpx;
+    height: 52rpx;
+    line-height: 52rpx;
+    color: white;
+    font-size: 52rpx;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+.shopTitleImage {
+    margin-top: 32rpx;
+    width: 24rpx;
+    height: 24rpx;
+}
+
+.shopTitle2 {
+    margin-top: 32rpx;
+    height: 32rpx;
+    line-height: 32rpx;
+    color: white;
+    font-size: 32rpx;
+    font-weight: bold;
+}
+
+.shopAddress {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 16rpx;
+    height: 28rpx;
+}
+
+.shopAddressInfo {
+    height: 28rpx;
+    line-height: 28rpx;
+    font-size: 20rpx;
+    color: rgba(255,255,255,0.5);
+    overflow: hidden;
+}
+
+.shopAddressLine {
+    margin-left: 12rpx;
+    height: 14rpx;
+    border-bottom: 1rpx solid rgba(255,255,255,0.1);
+    flex: 1;
+    min-width: 118rpx;
+}
+
+.bannerView {
+    position: relative;
+}
+
+.swiper-box {
+    margin-top: 32rpx;
+    height: 378rpx;
+    width: 100%;
+    text-align: center;
+}
+
+.slide-image {
+    width: 670rpx;
+    height: 100%;
+    border-radius: 20rpx;
+}
+
+.dots {
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 20rpx;
+}
+
+.dots .dot {
+    display: inline-block;
+    margin: 0 6rpx;
+    width: 16rpx;
+    height: 16rpx;
+    background: white;
+    border-radius: 8rpx;
+}
+
+.dots .dot.active {
+    margin: 0 6rpx;
+    width: 40rpx;
+    height: 16rpx;
+    background: #5f7fdc;
+    border-radius: 8rpx;
+}
+
+.bannerBottomView {
+    padding: 0 40rpx;
+}
+
+.explainImage {
+    margin-top: 16rpx;
+    width: 156rpx;
+    height: 42rpx;
+}
+
+.explainTitle {
+    margin-top: 8rpx;
+    font-size: 22rpx;
+    color: #363737;
+    line-height: 22rpx;
+}
+
+.explainTitleHeart {
+    width: 16rpx;
+    height: 16rpx;
+    vertical-align: top;
+    margin-left: 5rpx;
+    margin-top: 5rpx;
+}
+
+.searchViewSup {
+    margin-top: 16rpx;
+    border-top: 1rpx solid #e6e6e6;
+    padding-top: 32rpx;
+}
+
+.categoryScroll {
+    white-space: nowrap;
+}
+
+.categoryCell {
+    display: inline-block;
+    text-align: left;
+    margin: 32rpx 0 16rpx;
+}
+
+.categoryCell image {
+    width: 106rpx;
+    height: 106rpx;
+    border-radius: 15rpx;
+    border: 1rpx solid #e6e6e6;
+    margin: 1rpx;
+}
+
+.categoryCell view {
+    color: #272727;
+    font-size: 20rpx;
+    line-height: 20rpx;
+    height: 20rpx;
+    margin-top: 22rpx;
+    overflow: hidden;
+    text-align: center;
+    width: 106rpx;
+}
+
+.itemView {
+    margin-top: 32rpx;
+    padding: 1rpx 40rpx;
+}
+
+.groupView {
+    padding: 1rpx 0;
+    background-color: white;
+}
+
+.groupTop {
+    padding: 32rpx 0 16rpx;
+    border-bottom: 1rpx solid #e6e6e6;
+}
+
+.groupTopTitleView {
+    height: 36rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.groupTopTitle {
+    color: #363737;
+    font-weight: bold;
+    font-size: 36rpx;
+    line-height: 36rpx;
+    height: 36rpx;
+}
+
+.groupTopSubView {
+    height: 22rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: #b2b2b2;
+    margin-top: 16rpx;
+    font-size: 22rpx;
+    line-height: 22rpx;
+}
+
+.groupTopTitleLimitTime {
+    font-size: 26rpx;
+    font-weight: bold;
+    color: #e84b57;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+}
+
+.limitTimeView {
+    height: 36rpx;
+    width: 36rpx;
+    background-color: #e84b57;
+    color: white;
+    font-size: 22rpx;
+    line-height: 38rpx;
+    text-align: center;
+    border-radius: 8rpx;
+    margin-left: 4rpx;
+    margin-right: 4rpx;
+    font-family: "Courier New",Courier,monospace;
+}
+
+.lookMoreView {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.lookMoreView image {
+    height: 20rpx;
+    width: 20rpx;
+}
+
+.cell10View {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 42rpx 0 32rpx;
+    position: relative;
+}
+
+.cell10Image {
+    width: 230rpx;
+    height: 230rpx;
+    margin-right: 24rpx;
+    border: 1rpx solid #e6e6e6;
+    border-radius: 15rpx;
+}
+
+.cell10TagImage {
+    position: absolute;
+    border-radius: 15rpx;
+    width: 230rpx;
+    height: 230rpx;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.cell10RightView {
+    flex: 1;
+    position: relative;
+    height: 230rpx;
+}
+
+.cell10Title {
+    color: #363737;
+    font-size: 24rpx;
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 30rpx;
+}
+
+.cell10Description {
+    margin-top: 8rpx;
+    color: #b2b2b2;
+    font-size: 18rpx;
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.cell10SpuTagView {
+    margin-top: 8rpx;
+    height: 34rpx;
+    overflow: hidden;
+}
+
+.cell10SpuTagView view {
+    display: inline-block;
+    font-size: 18rpx;
+    padding: 0 12rpx;
+    height: 34rpx;
+    line-height: 36rpx;
+    border-radius: 0px 5.6rpx 5.6rpx 5.6rpx;
+    color: #E84B57;
+    background-color: rgba(232,75,87,0.1);
+    vertical-align: top;
+    margin-left: 8rpx;
+}
+
+.cell10SpuTagView .cell10SpuTag {
+    color: #5f7fdc;
+    background-color: rgba(95,127,220,0.1);
+    margin-left: 0;
+}
+
+.cell10PriceAndButtonView {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.cell10PriceView {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.cell10Price1 {
+    color: #e84b57;
+    font-size: 22rpx;
+    line-height: 22rpx;
+}
+
+.cell10Price2 {
+    color: #e84b57;
+    font-size: 40rpx;
+    line-height: 40rpx;
+    font-weight: bold;
+    margin-bottom: -1rpx;
+}
+
+.cell10Price3 {
+    color: #b2b2b2;
+    font-size: 22rpx;
+    line-height: 22rpx;
+    margin-left: 8rpx;
+    text-decoration: line-through;
+}
+
+.cell10Button {
+    width: 140rpx;
+    height: 58rpx;
+    color: white;
+    background-color: #e84b57;
+    border-radius: 5rpx;
+    font-size: 22rpx;
+    margin: 0rpx;
+    padding: 0;
+}
+
+.cell10ButtonDisabled {
+    background-color: #e6e6e6;
+}
+
+.cell10Button::after {
+    border: none;
+}
+
+.cell10BottomButton {
+    margin: 42rpx 205rpx;
+    padding: 0;
+    color: #5f7fdc;
+    border: 1rpx solid #e6e6e6;
+    background-color: white;
+    font-size: 24rpx;
+    height: 77rpx;
+    border-radius: 8rpx;
+    line-height: 77rpx;
+}
+
+.cell10BottomButton::after {
+    border: none;
+}
+
+.cell100View {
+    margin: 40rpx 0 32rpx;
+}
+
+.cell100Image {
+    width: 670rpx;
+    height: 670rpx;
+    border: 1rpx solid #e6e6e6;
+    border-radius: 15rpx;
+    position: relative;
+}
+
+.favImage {
+    z-index: 1;
+    position: absolute;
+    top: 40rpx;
+    right: 40rpx;
+    width: 36rpx;
+    height: 36rpx;
+}
+
+.cell100DesAndCountry {
+    margin-top: 32rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cell100Subtitle {
+    color: #363737;
+    font-weight: bold;
+    font-size: 30rpx;
+    line-height: 30rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cell100Country {
+    height: 30rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    color: #363737;
+    font-size: 26rpx;
+    line-height: 26rpx;
+    margin-left: 8rpx;
+}
+
+.cell100Country view {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cell100Country image {
+    height: 26rpx;
+    width: 26rpx;
+    margin-right: 8rpx;
+}
+
+.cell100Title {
+    margin-top: 16rpx;
+    color: #363737;
+    font-size: 26rpx;
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.cell100Description {
+    margin-top: 16rpx;
+    color: #b2b2b2;
+    font-size: 22rpx;
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.cell100SpuTagView {
+    margin-top: 16rpx;
+    height: 34rpx;
+    overflow: hidden;
+}
+
+.cell100SpuTagView view {
+    display: inline-block;
+    font-size: 18rpx;
+    padding: 0 12rpx;
+    height: 34rpx;
+    line-height: 36rpx;
+    border-radius: 0px 5.6rpx 5.6rpx 5.6rpx;
+    color: #E84B57;
+    background-color: rgba(232,75,87,0.1);
+    vertical-align: top;
+    margin-left: 8rpx;
+}
+
+.cell100SpuTagView .cell100SpuTag {
+    color: #5f7fdc;
+    background-color: rgba(95,127,220,0.1);
+    margin-left: 0;
+}
+
+.cell100PriceAndButton {
+    height: 60rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.cell100Price {
+    height: 60rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.cell100Price1 {
+    color: #5f7fdc;
+    font-size: 20rpx;
+    line-height: 20rpx;
+}
+
+.cell100Price2 {
+    color: #5f7fdc;
+    font-size: 48rpx;
+    line-height: 48rpx;
+    font-weight: bold;
+    margin-bottom: -4rpx;
+}
+
+.cell100Price3 {
+    color: #b2b2b2;
+    font-size: 24rpx;
+    line-height: 24rpx;
+    margin-left: 10rpx;
+    text-decoration: line-through;
+}
+
+.cell100PriceAndButton button {
+    height: 58rpx;
+    width: 140rpx;
+    border-radius: 5rpx;
+    background-color: #5f7fdc;
+    color: white;
+    font-size: 22rpx;
+    margin: 0;
+    padding: 0;
+}
+
+.cell100PriceAndButton button::after {
+    border: none;
+}
+
+.cell20View {
+    display: inline-block;
+    vertical-align: top;
+    width: 315rpx;
+    margin-top: 40rpx;
+    position: relative;
+}
+
+.cell20Image {
+    width: 315rpx;
+    height: 315rpx;
+    border: 1rpx solid #e6e6e6;
+    border-radius: 15rpx;
+}
+
+.cell20TagImage {
+    position: absolute;
+    border-radius: 15rpx;
+    width: 315rpx;
+    height: 315rpx;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.cell20Subtitle {
+    margin-top: 24rpx;
+    color: #363737;
+    font-size: 24rpx;
+    height: 24rpx;
+    line-height: 24rpx;
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.cell20Title {
+    margin-top: 16rpx;
+    color: #363737;
+    font-size: 20rpx;
+    height: 52rpx;
+    line-height: 26rpx;
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.cell20SpuTagView {
+    margin-top: 16rpx;
+    height: 34rpx;
+    overflow: hidden;
+}
+
+.cell20SpuTagView view {
+    display: inline-block;
+    font-size: 18rpx;
+    padding: 0 12rpx;
+    height: 34rpx;
+    line-height: 36rpx;
+    border-radius: 0px 5.6rpx 5.6rpx 5.6rpx;
+    color: #E84B57;
+    background-color: rgba(232,75,87,0.1);
+    vertical-align: top;
+    margin-left: 8rpx;
+}
+
+.cell20SpuTagView .cell20SpuTag {
+    color: #5f7fdc;
+    background-color: rgba(95,127,220,0.1);
+    margin-left: 0;
+}
+
+.cell20PriceAndCountry {
+    margin-top: 24rpx;
+    height: 30rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cell20PriceView {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.cell20Price {
+    color: #5f7fdc;
+    font-size: 30rpx;
+    line-height: 30rpx;
+    font-weight: bold;
+}
+
+.cell20Price3 {
+    color: #b2b2b2;
+    font-size: 22rpx;
+    line-height: 22rpx;
+    margin-left: 8rpx;
+    text-decoration: line-through;
+    margin-bottom: 5rpx;
+}
+
+.cell20Country {
+    height: 30rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    color: #363737;
+    font-size: 16rpx;
+}
+
+.cell20Country image {
+    height: 16rpx;
+    width: 16rpx;
+    margin-right: 5rpx;
+}
+
+.lineBottomView {
+    margin-top: 40rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.homeLineImage1 {
+    width: 354rpx;
+    height: 250rpx;
+}
+
+.lineBottomViewRight {
+    width: 296rpx;
+}
+
+.homeLineImage2 {
+    width: 296rpx;
+    height: 115rpx;
+}
+
+.homeLineImage3 {
+    margin-top: 20rpx;
+    width: 296rpx;
+    height: 115rpx;
+    position: relative;
+}
+
+.homeLineImage3 button {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background-color: transparent;
+}
+
+.homeLineImage3 button::after {
+    border: none;
+}
+
+.homeBottomTitle {
+    font-size: 22rpx;
+    color: #b2b2b2;
+    text-align: center;
+    margin: 64rpx 0 90rpx;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    color: transparent;
+}

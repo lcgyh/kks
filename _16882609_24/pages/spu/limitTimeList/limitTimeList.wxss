@@ -1,0 +1,231 @@
+.emptyPage {
+    text-align: center;
+}
+
+.emptyPage image {
+    height: 252rpx;
+    width: 252rpx;
+    margin-top: 200rpx;
+}
+
+.emptyPage view {
+    margin-top: 108rpx;
+    color: #b2b2b2;
+    font-size: 32rpx;
+}
+
+.emptyPage button {
+    margin-top: 64rpx;
+    width: 160rpx;
+    color: #5f7fdc;
+    height: 54rpx;
+    font-size: 26rpx;
+    line-height: 54rpx;
+    border-radius: 27rpx;
+    border: 1rpx solid #e6e6e6;
+    background-color: transparent;
+}
+
+.emptyPage button::after {
+    border: none;
+}
+
+.headerView {
+    height: 214rpx;
+    position: relative;
+    text-align: center;
+    padding-top: 1rpx;
+}
+
+.headerViewBackImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 214rpx;
+    width: 750rpx;
+}
+
+.TopLimitTime {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 56rpx;
+    color: white;
+    font-size: 36rpx;
+    font-weight: bold;
+}
+
+.limitTimeView {
+    height: 50rpx;
+    width: 50rpx;
+    color: #e84b57;
+    font-size: 34rpx;
+    line-height: 54rpx;
+    text-align: center;
+    border-radius: 11rpx;
+    margin-left: 6rpx;
+    margin-right: 6rpx;
+    background-color: white;
+    font-family: "Courier New",Courier,monospace;
+    font-weight: bold;
+}
+
+.activeTime {
+    margin-top: 8rpx;
+    font-size: 20rpx;
+    color: white;
+}
+
+.tableView {
+    padding: 0 40rpx;
+}
+
+.cell10View {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 42rpx 0 32rpx;
+    position: relative;
+}
+
+.cell10Image {
+    width: 230rpx;
+    height: 230rpx;
+    margin-right: 24rpx;
+    border: 1rpx solid #e6e6e6;
+    border-radius: 15rpx;
+}
+
+.cell10TagImage {
+    position: absolute;
+    border-radius: 15rpx;
+    width: 230rpx;
+    height: 230rpx;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.cell10RightView {
+    flex: 1;
+    position: relative;
+    height: 230rpx;
+}
+
+.cell10Title {
+    color: #363737;
+    font-size: 24rpx;
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 30rpx;
+}
+
+.cell10Description {
+    margin-top: 8rpx;
+    color: #b2b2b2;
+    font-size: 18rpx;
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.cell10SpuTagView {
+    margin-top: 8rpx;
+    height: 34rpx;
+    overflow: hidden;
+}
+
+.cell10SpuTagView view {
+    display: inline-block;
+    font-size: 18rpx;
+    padding: 0 12rpx;
+    height: 34rpx;
+    line-height: 36rpx;
+    border-radius: 0px 5.6rpx 5.6rpx 5.6rpx;
+    color: #e84b57;
+    background-color: rgba(232,75,87,0.1);
+    vertical-align: top;
+    margin-left: 8rpx;
+}
+
+.cell10SpuTagView .cell10SpuTag {
+    color: #5f7fdc;
+    background-color: rgba(95,127,220,0.1);
+    margin-left: 0;
+}
+
+.cell10PriceAndButtonView {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.cell10PriceView {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.cell10Price1 {
+    color: #e84b57;
+    font-size: 22rpx;
+    line-height: 22rpx;
+}
+
+.cell10Price2 {
+    color: #e84b57;
+    font-size: 40rpx;
+    line-height: 40rpx;
+    font-weight: bold;
+    margin-bottom: -1rpx;
+}
+
+.cell10Price3 {
+    color: #b2b2b2;
+    font-size: 22rpx;
+    line-height: 22rpx;
+    margin-left: 8rpx;
+    text-decoration: line-through;
+}
+
+.cell10Button {
+    width: 140rpx;
+    height: 58rpx;
+    color: white;
+    background-color: #e84b57;
+    border-radius: 5rpx;
+    font-size: 22rpx;
+    margin: 0rpx;
+    padding: 0;
+}
+
+.cell10ButtonDisabled {
+    background-color: #e6e6e6;
+}
+
+.cell10Button::after {
+    border: none;
+}
+
+.footerView {
+    text-align: center;
+    font-size: 22rpx;
+    color: #b2b2b2;
+    padding: 32rpx 0;
+}

@@ -1,0 +1,17 @@
+[is="vant-weapp/goods-action-button/index"] {
+    flex: 1;
+}
+
+[is="vant-weapp/tabbar-item/index"] {
+    flex: 1;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 200rpx 0;
+    box-sizing: border-box;
+}

@@ -1,0 +1,57 @@
+<view class="idCertificationPage" style="padding-bottom: {{16+(isIphoneX?68:0)}}rpx">
+    <view class="whiteView">
+        <view class="titleInfo">身份证信息（必填）</view>
+        <view class="infoView">
+            <view>真实姓名</view>
+            <input bindinput="nameInput" placeholder="请输入真实姓名" placeholderClass="placeholderInput" value="{{ucReal.realName}}"></input>
+        </view>
+        <view class="infoView">
+            <view>身份证号</view>
+            <input bindinput="idcardInput" placeholder="请输入身份证号" placeholderClass="placeholderInput" type="idcard" value="{{ucReal.idNo}}"></input>
+        </view>
+        <view class="infoView">
+            <view>手机号码</view>
+            <input bindinput="numberInput" placeholder="请输入手机号码" placeholderClass="placeholderInput" type="number" value="{{ucReal.realMobile}}"></input>
+        </view>
+    </view>
+    <view class="whiteView">
+        <view class="titleInfo">身份证正反面照片（必填）</view>
+        <view class="idCardInfo">
+            <view bindtap="idPicUrlUpload" class="idCardBack" data-index="{{0}}">
+                <image class="idImageAdd" src="../../../images/order/idImageAdd.png"></image>
+                <view class="idAddTitle">上传正面照片</view>
+                <image class="idImage" mode="aspectFill" src="{{ucReal.idPicUrl!=undefined&&ucReal.idPicUrl.length>0?ucReal.idPicUrlAll:''}}"></image>
+            </view>
+            <view bindtap="idPicUrlUpload" class="idCardBack" data-index="{{1}}">
+                <image class="idImageAdd" src="../../../images/order/idImageAdd.png"></image>
+                <view class="idAddTitle">上传反面照片</view>
+                <image class="idImage" mode="aspectFill" src="{{ucReal.id2PicUrl!=undefined&&ucReal.id2PicUrl.length>0?ucReal.id2PicUrlAll:''}}"></image>
+            </view>
+        </view>
+        <view class="idCardTipsTitle">身份证参考图例</view>
+        <view class="idCardInfo">
+            <view class="idCardBack">
+                <image class="idImage" mode="aspectFill" src="../../../images/order/idImageExample1.png"></image>
+            </view>
+            <view class="idCardBack">
+                <image class="idImage" mode="aspectFill" src="../../../images/order/idImageExample2.png"></image>
+            </view>
+        </view>
+        <view class="tipsTips">1、请上传单一背景色，清晰有效的正反照片</view>
+        <view class="tipsTips">2、请保证照片的四个边角完整显示</view>
+        <view class="tipsTips tipsTipsThree">3、请不要使用扫描件或复印件</view>
+    </view>
+    <button bindtap="submitButtonMethod" class="submitButton">提交实名认证信息</button>
+    <view class="whyTitle">为什么需要实名认证？</view>
+    <view class="whyContent">根据海关规定，购买跨境商品需要办理清关手续，请你配合进行实名认证，以确保你购买的商品顺利通过海关检查。KKid承诺所传身份证明只用于办理跨境商品的相关手续，不作他途使用，其他任何人无法查看。部分商品下单时需提供收货人的实名信息（含身份证照片），具体请以下单时的提示为准。</view>
+    <view class="agreementView">
+        <view bindtap="userProtocolShow" class="agreement">《个人申报委托协议》</view>
+    </view>
+</view>
+<van-popup bind:close="userProtocolHidden" catchtouchmove="ture" customStyle="background-color: transparent" position="bottom" safeAreaInsetBottom="{{false}}" show="{{showBondProductNotice}}">
+    <view class="showBondProductNoticeView" style="padding-bottom: {{isIphoneX?34*750/systemInfo.screenWidth+32:32}}rpx">
+        <view class="showBondProductNoticeTitle">个人申报委托协议</view>
+        <view class="showBondProductNoticeContent">本人承诺所购买商品系个人合理自用，现委托KKid及其合作伙伴代理申报、代缴税款等通关事宜，本人保证遵守《海关法》和国家相关法律规法规，保证所提供的身份信息和收获信息真实完善，无侵犯他人权益的行为。该产品入境需符合《中华人民共和国进出境动植物检疫法》，《农业部、国家质检总局第1712号公告》等法律法规的规定，并接受出入境检验检疫机构查验。以上委托关系系如实填写，本人充分了解相应法律法规并愿意接受海关、检验检疫机构及其他监管部门的兼管，并承担相应法律责任。</view>
+        <button bindtap="userProtocolHidden" class="showBondProductNoticeButton">知道了</button>
+    </view>
+</van-popup>

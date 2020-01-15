@@ -1,0 +1,163 @@
+<view class="pageInfo" style="padding-top:{{systemInfo.statusBarHeight+44}}px;">
+    <view class="navBar" style="height: {{systemInfo.statusBarHeight+44}}px;">
+        <view class="navBarTitle" style="margin-top: {{systemInfo.statusBarHeight}}px">订单确认
+      <image class="navBarBackButtonImage" src="/images/common/pageBackblack.png"></image>
+            <view bindtap="backButtonMethod" class="backButton"></view>
+        </view>
+    </view>
+    <block wx:if="{{pageInfo!=null}}">
+        <view class="whiteView">
+            <view class="chooseDeliveryTypeView centerView" wx:if="{{pageInfo.ocOrder.groupType==23}}">
+                <view bindtap="handleExpectDeliveryType" class="typeView centerView" data-type="{{10}}">
+                    <image src="{{expectDeliveryType==10?'../../../images/order/cart_choose_yes.png':'../../../images/order/cart_choose_no.png'}}"></image>
+                    <view class="{{expectDeliveryType==10?'typeViewChoosed':''}}">快递或同城配送</view>
+                    <view class="typeViewBottom" hidden="{{expectDeliveryType!=10}}"></view>
+                </view>
+                <view class="typeViewMiddle"></view>
+                <view bindtap="handleExpectDeliveryType" class="typeView centerView" data-type="{{20}}">
+                    <image src="{{expectDeliveryType==20?'../../../images/order/cart_choose_yes.png':'../../../images/order/cart_choose_no.png'}}"></image>
+                    <view class="{{expectDeliveryType==20?'typeViewChoosed':''}}">门店自提</view>
+                    <view class="typeViewBottom" hidden="{{expectDeliveryType!=20}}"></view>
+                </view>
+            </view>
+            <view class="deliveryTypeExplain" wx:if="{{pageInfo.ocOrder.groupType==23}}">{{expectDeliveryType==10?'门店将根据收货地址为你进行同城配送或快递发货。':'你可以在门店营业时间内任意时间到店取货。'}}</view>
+            <view class="topView" wx:if="{{expectDeliveryType==10}}">收货地址</view>
+            <view class="topView betweenView" wx:else>
+                <view>自提地址</view>
+                <view class="betweenView">
+                    <button bindtap="phoneCall" class="phoneCallButton">拨打电话</button>
+                </view>
+            </view>
+            <view bindtap="addressInfoChoose" class="addressView" wx:if="{{expectDeliveryType==10}}">
+                <view class="betweenView noAddressView" wx:if="{{pageInfo.ocOrder.ocOrderInfo.cityName==null||pageInfo.ocOrder.ocOrderInfo.cityName==undefined||pageInfo.ocOrder.ocOrderInfo.cityName.length==0}}">
+                    <view>一键导入微信地址</view>
+                    <image class="addressArrow" src="../../../images/common/rightArrows.png"></image>
+                </view>
+                <block wx:else>
+                    <view class="betweenView">
+                        <view class="addressTitle">{{pageInfo.ocOrder.ocOrderInfo.name}} {{pageInfo.ocOrder.ocOrderInfo.mobile}}</view>
+                        <image class="addressArrow" src="../../../images/common/rightArrows.png"></image>
+                    </view>
+                    <view>{{pageInfo.ocOrder.ocOrderInfo.cityName}} {{pageInfo.ocOrder.ocOrderInfo.areaName}} {{pageInfo.ocOrder.ocOrderInfo.address}}</view>
+                </block>
+            </view>
+            <view class="addressView" wx:else>
+                <view class="addressTitle">{{pageInfo.ocOrder.spShop.sname}}</view>
+                <view>{{pageInfo.ocOrder.spShop.city.name}}{{pageInfo.ocOrder.spShop.area.name}}{{pageInfo.ocOrder.spShop.address}}</view>
+            </view>
+        </view>
+        <view class="whiteView" wx:if="{{pageInfo.ocOrder.type==20}}">
+            <view class="topView">实名认证</view>
+            <view class="idCerView betweenView">
+                <view>认证信息</view>
+                <view bindtap="goIdCertificationPage" class="endView">
+                    <view class="idCerViewRightTitle" style="color:{{pageInfo.ocOrder.ocOrderInfo.idNoEncryption.length>0?'#272727':'#5f7fdc'}}">{{pageInfo.ocOrder.ocOrderInfo.idNoEncryption!=undefined&&pageInfo.ocOrder.ocOrderInfo.idNoEncryption.length>0?pageInfo.ocOrder.ocOrderInfo.realName+' '+pageInfo.ocOrder.ocOrderInfo.idNoEncryption:'立即实名认证'}}</view>
+                    <image class="addressArrow" src="../../../images/common/rightArrows.png"></image>
+                </view>
+            </view>
+        </view>
+        <view class="whiteView">
+            <view class="topView betweenView">
+                <view>商品清单</view>
+                <view class="ocOrderDetailsQty">共计{{pageInfo.ocOrder.qty}}件</view>
+            </view>
+            <view class="ocOrderDetailsTable">
+                <view class="ocOrderDetailsCell betweenView" wx:for="{{pageInfo.ocOrder.ocOrderDetails}}" wx:key="pdItemSkuId">
+                    <image mode="aspectFill" src="{{item.picUrlAll}}?x-oss-process=image/resize,w_350"></image>
+                    <view class="ocOrderDetailsCellRigth">
+                        <view class="itemTitle">{{item.title}}</view>
+                        <view class="spuTagView">
+                            <view>{{pageInfo.ocOrder.groupType==23?'门店现货':pageInfo.ocOrder.type==10?'品牌直发':'跨境保税'}}</view>
+                            <view wx:if="{{pageInfo.ocOrder.groupType!=23||pageInfo.ocOrder.groupType==23&&expectDeliveryType!=20&&(pageInfo.freight==0||pageInfo.freight==undefined||pageInfo.freeOrderFreightAmount==0||pageInfo.freeOrderFreightAmount==undefined||pageInfo.ocOrder.itemAmount>=pageInfo.freeOrderFreightAmount)}}">{{pageInfo.ocOrder.type==10?'包邮':'包税包邮'}}</view>
+                        </view>
+                        <view class="skunameShort">{{item.skunameShort}}</view>
+                        <view class="priceAndQty betweenView">
+                            <view class="priceAndQtyPrice">￥{{priceFormat.priceFormat(item.retailPrice)}}</view>
+                            <view class="endView">
+                                <view class="qtySymbol">×</view>
+                                <view>{{item.qty}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="whiteView">
+            <view class="topView">订单结算</view>
+            <view class="payViewInfo">
+                <view class="betweenView">
+                    <view>商品总额</view>
+                    <view class="payViewInfoRight">￥{{priceFormat.priceFormat(pageInfo.ocOrder.itemAmount)}}</view>
+                </view>
+                <block wx:if="{{expectDeliveryType==10}}">
+                    <view class="payViewInfoFreight betweenView">
+                        <view>运费</view>
+                        <view class="payViewInfoRight">￥{{priceFormat.priceFormat(pageInfo.ocOrder.groupType!=23||pageInfo.ocOrder.groupType==23&&(pageInfo.freight==0||pageInfo.freight==undefined||pageInfo.freeOrderFreightAmount==0||pageInfo.freeOrderFreightAmount==undefined||pageInfo.ocOrder.itemAmount>=pageInfo.freeOrderFreightAmount)?0:pageInfo.freight)}}</view>
+                    </view>
+                    <view class="payViewInfoFreightExplain">{{pageInfo.ocOrder.groupType!=23||pageInfo.ocOrder.groupType==23&&(pageInfo.freight==0||pageInfo.freight==undefined||pageInfo.freeOrderFreightAmount==0||pageInfo.freeOrderFreightAmount==undefined||pageInfo.ocOrder.itemAmount>=pageInfo.freeOrderFreightAmount)?'免运费':'还差'+priceFormat.priceFormat(pageInfo.freeOrderFreightAmount-pageInfo.ocOrder.itemAmount)+'元免运费'}}</view>
+                </block>
+            </view>
+            <view class="payTotalView betweenView">
+                <view class="payTotalViewTitle">合计</view>
+                <view>￥{{priceFormat.priceFormat( pageInfo.ocOrder.itemAmount+(pageInfo.ocOrder.groupType!=23||expectDeliveryType==20||pageInfo.ocOrder.groupType==23&&(pageInfo.freight==0||pageInfo.freight==undefined||pageInfo.freeOrderFreightAmount==0||pageInfo.freeOrderFreightAmount==undefined||pageInfo.ocOrder.itemAmount>=pageInfo.freeOrderFreightAmount)?0:pageInfo.freight) )}}</view>
+            </view>
+        </view>
+        <view class="whiteView">
+            <view class="topView">支付方式</view>
+            <view bindtap="payTypeHandle" class="payTypeView betweenView" data-paytype="{{10}}">
+                <view class="startView">
+                    <image class="payTypeImage" src="../../../images/order/order_pay_wechat.png"></image>
+                    <view>微信支付</view>
+                </view>
+                <image src="{{payType==10?'../../../images/order/cart_choose_yes.png':'../../../images/order/cart_choose_no.png'}}"></image>
+            </view>
+            <block wx:if="{{pageInfo.ocOrder.groupType==23&&pageInfo.prePayWithShop}}">
+                <view bindtap="payTypeHandle" class="payTypeView betweenView" data-paytype="{{72}}">
+                    <view class="startView">
+                        <image class="payTypeImage" src="../../../images/order/order_pay_card.png"></image>
+                        <view>门店充值卡支付</view>
+                    </view>
+                    <image src="{{payType==72?'../../../images/order/cart_choose_yes.png':'../../../images/order/cart_choose_no.png'}}"></image>
+                </view>
+                <view class="InputView" wx:if="{{payType==72}}">
+                    <input bindinput="outPayNoInput" maxlength="{{18}}" placeholder="填写充值卡卡号" placeholderClass="outPayNoInputPlaceholder" value="{{outPayNo}}" wx:if="{{payType==72}}"></input>
+                </view>
+            </block>
+        </view>
+        <view class="payTypeExplain" wx:if="{{pageInfo.ocOrder.groupType==23&&pageInfo.prePayWithShop&&payType==72}}">选择充值卡支付，门店将通过充值卡进行扣款；请确保充值卡金额充足，否则可能导致订单支付失败喔~</view>
+        <view style="height: 152rpx;" wx:if="{{pageInfo.ocOrder.groupType==23&&pageInfo.prePayWithShop&&payType!=72}}"></view>
+        <view style="height: 158rpx;"></view>
+        <view class="footerView">
+            <button bindgetphonenumber="getPhoneNumberSaleSubmit" class="footerButtonView" openType="getPhoneNumber" wx:if="{{pageInfo.ocOrder.groupType==23&&expectDeliveryType==20&&!userHaveMobile}}">
+                <view>合计：￥{{priceFormat.priceFormat( pageInfo.ocOrder.itemAmount+(pageInfo.ocOrder.groupType!=23||expectDeliveryType==20||pageInfo.ocOrder.groupType==23&&(pageInfo.freight==0||pageInfo.freight==undefined||pageInfo.freeOrderFreightAmount==0||pageInfo.freeOrderFreightAmount==undefined||pageInfo.ocOrder.itemAmount>=pageInfo.freeOrderFreightAmount)?0:pageInfo.freight) )}}</view>
+                <view class="footerButtonTitle">{{orderInfo==null?'提交订单':'继续支付'}}</view>
+            </button>
+            <button bindtap="submitButtonMethod" class="footerButtonView">
+                <view>合计：￥{{priceFormat.priceFormat( pageInfo.ocOrder.itemAmount+(pageInfo.ocOrder.groupType!=23||expectDeliveryType==20||pageInfo.ocOrder.groupType==23&&(pageInfo.freight==0||pageInfo.freight==undefined||pageInfo.freeOrderFreightAmount==0||pageInfo.freeOrderFreightAmount==undefined||pageInfo.ocOrder.itemAmount>=pageInfo.freeOrderFreightAmount)?0:pageInfo.freight) )}}</view>
+                <view class="footerButtonTitle">{{orderInfo==null?'提交订单':'继续支付'}}</view>
+            </button>
+        </view>
+    </block>
+</view>
+<van-popup bind:close="orderAgainPayClose" catchtouchmove="ture" customStyle="background-color: transparent" position="bottom" safeAreaInsetBottom="{{false}}" show="{{orderAgainPayShow}}">
+    <view class="orderAgainPayView">
+        <view class="orderAgainPayTopView">
+      请在
+      <view class="orderAgainPayTime">{{dateUtil.dateFormat(orderInfo.payTimeET-nowtimestamp,'mm:ss')}}</view>
+      内支付
+    </view>
+        <image bindtap="orderAgainPayClose" class="orderAgainPayCloseImage" src="../../../images/spu/type_sheet_close.png"></image>
+        <view class="orderAgainPayAddress">
+            <view>收货地址：</view>
+            <view class="orderAgainPayAddressInfo">{{pageInfo.ocOrder.ocOrderInfo.cityName}} {{pageInfo.ocOrder.ocOrderInfo.areaName}} {{pageInfo.ocOrder.ocOrderInfo.address}}</view>
+        </view>
+        <view bindtap="submitButtonMethod" class="orderAgainPaySubmitView">
+            <view class="orderAgainPaySubmitViewBuyNow" style="padding-top: {{pageInfo.type==10?30:12}}rpx">继续支付 ￥{{priceFormat.priceFormat( pageInfo.ocOrder.itemAmount+(pageInfo.ocOrder.groupType!=23||expectDeliveryType==20||pageInfo.ocOrder.groupType==23&&(pageInfo.freight==0||pageInfo.freight==undefined||pageInfo.freeOrderFreightAmount==0||pageInfo.freeOrderFreightAmount==undefined||pageInfo.ocOrder.itemAmount>=pageInfo.freeOrderFreightAmount)?0:pageInfo.freight) )}}</view>
+            <view class="orderAgainPaySubmitViewBuyNowExplain" hidden="{{pageInfo.type==10}}">请选择同实名信息一致的账号支付</view>
+        </view>
+        <view style="height:constant(safe-area-inset-bottom);height:env(safe-area-inset-bottom);"></view>
+        <view style="height: 1rpx;"></view>
+    </view>
+</van-popup>
+<wxs module="priceFormat" src="../../../utils/priceFormat.wxs" />
+<wxs module="dateUtil" src="../../../utils/dateFormat.wxs" />

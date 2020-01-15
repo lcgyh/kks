@@ -1,0 +1,58 @@
+page {
+    background-color: #f4f4f4;
+}
+
+.changeShopPage {
+    margin-bottom: 50rpx;
+}
+
+.shopCell {
+    position: relative;
+    background-color: white;
+    margin: 32rpx 40rpx 0;
+    border-radius: 10rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-start;
+    align-items: center;
+    height: 244rpx;
+    padding: 0 32rpx;
+}
+
+.shopPic {
+    width: 180rpx;
+    height: 180rpx;
+    border-radius: 8rpx;
+    border: 1rpx solid #e6e6e6;
+}
+
+.headerRightView {
+    margin-left: 16rpx;
+    flex: 1;
+}
+
+.shopName {
+    color: #1d1d1d;
+    font-size: 26rpx;
+    font-weight: bold;
+}
+
+.shopAdress {
+    color: #1d1d1d;
+    margin-top: 16rpx;
+    font-size: 22rpx;
+}
+
+.chooseView {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 0 10rpx;
+    line-height: 40rpx;
+    height: 40rpx;
+    width: 88rpx;
+    text-align: center;
+    color: white;
+    font-size: 18rpx;
+    background-color: #5f7fdc;
+}

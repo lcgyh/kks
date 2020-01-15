@@ -1,0 +1,127 @@
+page {
+    background-color: #f4f4f4;
+}
+
+.logisticsPage {
+    width: 100%;
+}
+
+.whiteView {
+    margin: 32rpx 40rpx 0;
+    border-radius: 10rpx;
+    background-color: white;
+    padding: 0 32rpx;
+}
+
+.logisticsHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.logisticsHeader image {
+    border-radius: 8rpx;
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 188rpx;
+    width: 188rpx;
+    margin: 32rpx 16rpx 32rpx 0;
+    border: 1rpx solid #e6e6e6;
+}
+
+.rightView {
+    color: #272727;
+    font-size: 22rpx;
+    display: flex;
+    align-content: center;
+    height: 100%;
+    width: 188;
+    margin-top: 32rpx;
+}
+
+.rightView view {
+    line-height: 22rpx;
+}
+
+.bsExpressName {
+    margin-top: 34rpx;
+}
+
+.bsExpressMainNo {
+    margin-top: 22rpx;
+}
+
+.mainNoCopy {
+    color: #5F7FDC;
+    margin-left: 16rpx;
+    display: inline-block;
+    margin-top: 0;
+}
+
+.telephone {
+    margin-top: 22rpx;
+}
+
+.logisticsDetail {
+    height: 88rpx;
+    line-height: 88rpx;
+    color: #363737;
+    font-size: 26rpx;
+    font-weight: bold;
+    border-bottom: 1rpx solid #e6e6e6;
+}
+
+.logisticsDetailInfo {
+    padding-bottom: 24rpx;
+}
+
+.logisticsDetailInfoCell {
+    margin-top: 24rpx;
+    position: relative;
+}
+
+.contextPoint {
+    position: absolute;
+    height: 8rpx;
+    width: 8rpx;
+    border-radius: 4rpx;
+    background-color: #525252;
+    left: 0;
+    top: 13rpx;
+}
+
+.context {
+    color: #525252;
+    font-size: 24rpx;
+    font-weight: bold;
+    margin-left: 16rpx;
+}
+
+.createTime {
+    color: #B2B2B2;
+    font-size: 20rpx;
+    margin-top: 10rpx;
+    margin-left: 16rpx;
+}
+
+.logisticsEmptyView {
+    text-align: center;
+}
+
+.logisticsEmptyImage {
+    margin-top: 248rpx;
+    height: 252rpx;
+    width: 252rpx;
+}
+
+.logisticsEmptyText1 {
+    margin-top: 96rpx;
+    color: #B2B2B2;
+    font-size: 32rpx;
+}
+
+.logisticsEmptyText2 {
+    margin-top: 16rpx;
+    color: #272727;
+    font-size: 26rpx;
+}

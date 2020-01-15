@@ -1,0 +1,249 @@
+<view class="homePage" wx:if="{{headerInfo!=null&&pageItemInfo!=null}}">
+    <image class="addMineImage" hidden="{{addMineHidden}}" src="../../../images/spu/home_page_addMine.png" style="top:{{systemInfo.statusBarHeight+44-16*systemInfo.screenWidth/750}}px;">
+        <view catchtap="addMineHiddenClose" class="addMineImageClose"></view>
+    </image>
+    <view class="navBarView" hidden="{{navBarHidden}}">
+        <view class="navBarViewBar" style="height: {{systemInfo.statusBarHeight+44}}px;">
+            <view class="navBarViewTitle" style="padding-top: {{systemInfo.statusBarHeight}}px">{{headerInfo.spShop.sname}} × KKID</view>
+        </view>
+        <view class="navSearchView">
+            <view bindtap="searchGoSpuSearchList" class="searchView">
+                <image src="../../../images/spu/seachIcon.png"></image>
+                <view>搜索</view>
+            </view>
+        </view>
+    </view>
+    <image catchtap="goTopButtonMethod" class="goTop" hidden="{{goTopButtonHidden}}" src="../../../images/spu/goTop_float.png"></image>
+    <image class="headerBackImage" src="../../../images/spu/homePageHeader.png"></image>
+    <view class="shopInfo">
+        <view class="shopTitle1">{{headerInfo.spShop.name}}</view>
+        <image class="shopTitleImage" src="../../../images/spu/home_shop_title.png"></image>
+        <view class="shopTitle2">KKID 未来母婴联名店</view>
+        <view class="shopAddress">
+            <view class="shopAddressInfo">{{headerInfo.spShop.city.name}}{{headerInfo.spShop.area.name}}{{headerInfo.spShop.address}}</view>
+            <view class="shopAddressLine"></view>
+        </view>
+    </view>
+    <view class="bannerView">
+        <swiper autoplay="{{true}}" bindchange="swiperChange" circular="{{true}}" class="swiper-box" current="{{currentTab}}" interval="{{8000}}" nextMargin="30rpx" previousMargin="30rpx">
+            <swiper-item bindtap="swiperBannerTap" data-index="{{index}}" wx:for="{{headerInfo.spBanners}}" wx:key="spBannerId">
+                <image class="slide-image" mode="aspectFill" src="{{item.picUrlAll}}?x-oss-process=image/resize,w_750"></image>
+            </swiper-item>
+        </swiper>
+        <view class="dots" hidden="{{headerInfo.spBanners.length<2}}">
+            <view class="dot{{index==swiperCurrent?' active':''}}" wx:for="{{headerInfo.spBanners}}" wx:key="spBannerId"></view>
+        </view>
+    </view>
+    <view class="bannerBottomView">
+        <image class="explainImage" src="../../../images/spu/home_explain_image.png"></image>
+        <view class="explainTitle">你关爱宝宝，我们关爱你和宝宝
+      <image class="explainTitleHeart" src="../../../images/spu/home_shop_heart.png"></image>
+        </view>
+        <view class="searchViewSup">
+            <view bindtap="searchGoSpuSearchList" class="searchView">
+                <image src="../../../images/spu/seachIcon.png"></image>
+                <view>搜索</view>
+            </view>
+        </view>
+        <scroll-view scrollX class="categoryScroll" hidden="{{headerInfo.pdCategorys.length<6}}">
+            <view bindtap="goSpuSearchList" class="categoryCell" data-index="{{index}}" style="margin-left: {{index==0?0:16}}rpx;" wx:for="{{headerInfo.pdCategorys}}" wx:key="pdCategoryId">
+                <image src="{{item.picUrlAll}}"></image>
+                <view>{{item.name}}</view>
+            </view>
+        </scroll-view>
+    </view>
+    <view class="itemView">
+        <view wx:if="{{pageItemInfo!=null}}" wx:for="{{pageItemInfo}}" wx:for-index="groupIndex" wx:for-item="groupItem" wx:key="mkDiscountId">
+            <view class="groupView" wx:if="{{groupItem.type==10}}">
+                <view class="groupTop">
+                    <view class="groupTopTitleView">
+                        <view class="groupTopTitle">{{groupItem.title1}}</view>
+                        <view class="groupTopTitleLimitTime">
+                            <view>距{{groupItem.startTime>nowTime?'开抢':'结束'}}</view>
+                            <view class="limitTimeView" style="margin-left: 10rpx;">{{groupItem.limitTimeInfo.hours}}</view>
+                            <view>:</view>
+                            <view class="limitTimeView">{{groupItem.limitTimeInfo.minutes}}</view>
+                            <view>:</view>
+                            <view class="limitTimeView" style="margin-right: 0">{{groupItem.limitTimeInfo.seconds}}</view>
+                        </view>
+                    </view>
+                    <view class="groupTopSubView">
+                        <view class="groupTopSub">{{groupItem.title2}}</view>
+                        <view>{{dateUtil.dateFormat(groupItem.startTime,'MM月dd日hh:mm')}}~{{dateUtil.dateFormat(groupItem.endTime,groupItem.limitTimeSameTime?'hh:mm':'MM月dd日hh:mm')}}</view>
+                    </view>
+                </view>
+                <view bindtap="goSpuDetail" class="cell10View" data-pditemid="{{item.pdItemId}}" wx:for="{{groupItem.pdItemList}}" wx:key="pdItemId">
+                    <image class="cell10Image" lazyLoad="{{true}}" mode="aspectFill" src="{{item.pdSpu.picUrlAll}}?x-oss-process=image/resize,w_350"></image>
+                    <image class="cell10TagImage" lazyLoad="{{true}}" mode="aspectFill" src="{{item.picUrlTagAll}}" wx:if="{{item.picUrlTagAll.length>10}}"></image>
+                    <view class="cell10RightView">
+                        <view class="cell10Title">{{item.title}}</view>
+                        <view class="cell10Description">{{item.pdItemInfo.description}}</view>
+                        <view class="cell10SpuTagView">
+                            <view class="cell10SpuTag">{{item.groupType==23?'门店现货':item.pdSpu.type==10?'品牌直发':'跨境保税'}}</view>
+                            <view wx:for="{{item.textTags}}" wx:for-index="tagIndex" wx:for-item="tagItem" wx:key="*this">{{tagItem}}</view>
+                        </view>
+                        <view class="cell10PriceAndButtonView">
+                            <view class="cell10PriceView">
+                                <view class="cell10Price1">￥</view>
+                                <view class="cell10Price2">{{priceFormat.priceFormat(item.discountRetailPriceMin)}}</view>
+                                <view class="cell10Price3" hidden="{{item.discountExistNow==false}}">￥{{priceFormat.priceFormat(item.retailPriceMin)}}</view>
+                            </view>
+                            <button class="cell10Button {{item.saleStockStatus==1?'':'cell10ButtonDisabled'}}">{{groupItem.startTime>nowTime?'即将开抢':item.saleStockStatus==1?'马上抢':'抢完了'}}</button>
+                        </view>
+                    </view>
+                </view>
+                <button bindtap="goLimitTimeList" class="cell10BottomButton" data-groupindex="{{groupIndex}}">查看更多商品</button>
+            </view>
+            <view class="groupView" wx:elif="{{groupItem.type==22}}">
+                <view class="groupTop">
+                    <view class="groupTopTitleView">
+                        <view class="groupTopTitle">{{groupItem.title1}}</view>
+                    </view>
+                    <view class="groupTopSubView">
+                        <view class="groupTopSub">{{groupItem.title2}}</view>
+                        <view bindtap="goActivityTimeList" class="lookMoreView" data-groupindex="{{groupIndex}}" hidden="{{!groupItem.showMore}}">
+                            <view>查看更多</view>
+                            <image src="../../../images/user/allOrderArrow.png"></image>
+                        </view>
+                    </view>
+                </view>
+                <view bindtap="goSpuDetail" class="cell100View" data-pditemid="{{item.pdItemId}}" wx:for="{{groupItem.pdItemList}}" wx:key="pdItemId">
+                    <image class="cell100Image" lazyLoad="{{true}}" mode="aspectFill" src="{{item.pdSpu.picUrlAll}}?x-oss-process=image/resize,w_750">
+                        <image catchtap="ucSubscribeFavoriteButtonMethod" class="favImage" data-groupindex="{{groupIndex}}" data-index="{{index}}" src="../../../images/spu/home_fav_{{item.ucSubscribeFavorite==true?'true':'false'}}.png"></image>
+                    </image>
+                    <view class="cell100DesAndCountry">
+                        <view class="cell100Subtitle">#{{item.pdItemInfo.subtitle}}#
+            </view>
+                        <view class="cell100Country">
+                            <image lazyLoad="{{true}}" mode="aspectFill" src="{{item.pdSpu.pdBrand.pdCountry.picUrlAll}}?x-oss-process=image/resize,w_20"></image>
+                            <view>{{item.pdSpu.pdBrand.pdCountry.name}}</view>
+                        </view>
+                    </view>
+                    <view class="cell100Title">{{item.title}}</view>
+                    <view class="cell100Description">{{item.pdItemInfo.description}}</view>
+                    <view class="cell100SpuTagView">
+                        <view class="cell100SpuTag">{{item.groupType==23?'门店现货':item.pdSpu.type==10?'品牌直发':'跨境保税'}}</view>
+                        <view wx:for="{{item.textTags}}" wx:for-index="tagIndex" wx:for-item="tagItem" wx:key="*this">{{tagItem}}</view>
+                    </view>
+                    <view class="cell100PriceAndButton">
+                        <view class="cell100Price">
+                            <view class="cell100Price1">￥</view>
+                            <view class="cell100Price2">{{priceFormat.priceFormat(item.discountRetailPriceMin)}}</view>
+                            <view class="cell100Price3" hidden="{{item.discountExistNow==false}}">￥{{priceFormat.priceFormat(item.retailPriceMin)}}</view>
+                        </view>
+                        <view catchtap="buttonBack">
+                            <block wx:if="{{item.saleStatus==10}}">
+                                <button bindtap="ucSubscribeSaleButtonMethod" data-groupindex="{{groupIndex}}" data-index="{{index}}" wx:if="{{userInfo.mobile!=undefined&&userInfo.mobile!=null&&userInfo.mobile.length>5}}">{{item.ucSubscribeSale?'取消开售提醒':'开售提醒'}}</button>
+                                <button bindgetphonenumber="getPhoneNumberSale" bindtap="getPhoneNumberSaleTap" data-groupindex="{{groupIndex}}" data-index="{{index}}" openType="getPhoneNumber" wx:else>{{item.ucSubscribeSale?'取消开售提醒':'开售提醒'}}</button>
+                            </block>
+                            <block wx:elif="{{item.saleStatus==20}}">
+                                <button bindgetuserinfo="bindGetUserInfoBuy" bindtap="{{userInfo.headUrl.length>10?'buyButtonMethod':''}}" data-groupindex="{{groupIndex}}" data-index="{{index}}" openType="{{userInfo.headUrl.length>10?'':'getUserInfo'}}" wx:if="{{item.saleStockStatus==1}}">立即购买</button>
+                                <block wx:else>
+                                    <button catchtap="ucSubscribeStockButtonMethod" data-groupindex="{{groupIndex}}" data-index="{{index}}" wx:if="{{userInfo.mobile!=undefined&&userInfo.mobile!=null&&userInfo.mobile.length>5}}">{{item.ucSubscribeStock?'取消到货提醒':'到货提醒'}}</button>
+                                    <button bindgetphonenumber="getPhoneNumberStock" bindtap="getPhoneNumberStockTap" data-groupindex="{{groupIndex}}" data-index="{{index}}" openType="getPhoneNumber" wx:else>{{item.ucSubscribeStock?'取消到货提醒':'到货提醒'}}</button>
+                                </block>
+                            </block>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="groupView" wx:elif="{{groupItem.type==20}}">
+                <view class="groupTop">
+                    <view class="groupTopTitleView">
+                        <view class="groupTopTitle">{{groupItem.title1}}</view>
+                    </view>
+                    <view class="groupTopSubView">
+                        <view class="groupTopSub">{{groupItem.title2}}</view>
+                        <view bindtap="goActivityTimeList" class="lookMoreView" data-groupindex="{{groupIndex}}" hidden="{{!(groupItem.showMore||groupItem.spShopId>0)}}">
+                            <view>查看更多</view>
+                            <image src="../../../images/user/allOrderArrow.png"></image>
+                        </view>
+                    </view>
+                </view>
+                <view bindtap="goSpuDetail" class="cell20View" data-pditemid="{{item.pdItemId}}" style="margin-right: {{index%2==0?40:0}}rpx;" wx:for="{{groupItem.pdItemList}}" wx:key="pdItemId">
+                    <image class="cell20Image" lazyLoad="{{true}}" mode="aspectFill" src="{{item.pdSpu.picUrlAll}}?x-oss-process=image/resize,w_350"></image>
+                    <image class="cell20TagImage" lazyLoad="{{true}}" mode="aspectFill" src="{{item.picUrlTagAll}}" wx:if="{{item.picUrlTagAll.length>10}}"></image>
+                    <view class="cell20Subtitle">#{{item.pdItemInfo.subtitle}}#</view>
+                    <view class="cell20Title">{{item.title}}</view>
+                    <view class="cell20SpuTagView">
+                        <view class="cell20SpuTag">{{item.groupType==23?'门店现货':item.pdSpu.type==10?'品牌直发':'跨境保税'}}</view>
+                        <view wx:for="{{item.textTags}}" wx:for-index="tagIndex" wx:for-item="tagItem" wx:key="*this">{{tagItem}}</view>
+                    </view>
+                    <view class="cell20PriceAndCountry">
+                        <view class="cell20PriceView">
+                            <view class="cell20Price">￥{{priceFormat.priceFormat(item.discountRetailPriceMin)}}</view>
+                            <view class="cell20Price3" hidden="{{item.discountExistNow==false}}">￥{{priceFormat.priceFormat(item.retailPriceMin)}}</view>
+                        </view>
+                        <view class="cell20Country">
+                            <image lazyLoad="{{true}}" mode="aspectFill" src="{{item.pdSpu.pdBrand.pdCountry.picUrlAll}}?x-oss-process=image/resize,w_20"></image>
+                            <view>{{item.pdSpu.pdBrand.pdCountry.name}}</view>
+                        </view>
+                    </view>
+                </view>
+                <view style="height: 40rpx;"></view>
+            </view>
+            <view class="groupView" wx:elif="{{groupItem.type==11}}">
+                <view class="groupTop">
+                    <view class="groupTopTitleView">
+                        <view class="groupTopTitle">{{groupItem.title1}}</view>
+                        <view class="groupTopTitleLimitTime">
+                            <view>距{{groupItem.startTime>nowTime?'开抢':'结束'}}</view>
+                            <view class="limitTimeView" style="margin-left: 10rpx;">{{groupItem.limitTimeInfo.hours}}</view>
+                            <view>:</view>
+                            <view class="limitTimeView">{{groupItem.limitTimeInfo.minutes}}</view>
+                            <view>:</view>
+                            <view class="limitTimeView" style="margin-right: 0">{{groupItem.limitTimeInfo.seconds}}</view>
+                        </view>
+                    </view>
+                    <view class="groupTopSubView">
+                        <view class="groupTopSub">{{groupItem.title2}}</view>
+                        <view>{{dateUtil.dateFormat(groupItem.startTime,'MM月dd日hh:mm')}}~{{dateUtil.dateFormat(groupItem.endTime,groupItem.limitTimeSameTime?'hh:mm':'MM月dd日hh:mm')}}</view>
+                    </view>
+                </view>
+                <view bindtap="goSpuDetail" class="cell20View" data-pditemid="{{item.pdItemId}}" style="margin-right: {{index%2==0?40:0}}rpx;" wx:for="{{groupItem.pdItemList}}" wx:key="pdItemId">
+                    <image class="cell20Image" lazyLoad="{{true}}" mode="aspectFill" src="{{item.pdSpu.picUrlAll}}?x-oss-process=image/resize,w_350"></image>
+                    <image class="cell20TagImage" lazyLoad="{{true}}" mode="aspectFill" src="{{item.picUrlTagAll}}" wx:if="{{item.picUrlTagAll.length>10}}"></image>
+                    <view class="cell20Subtitle">#{{item.pdItemInfo.subtitle}}#</view>
+                    <view class="cell20Title">{{item.title}}</view>
+                    <view class="cell20SpuTagView">
+                        <view class="cell20SpuTag">{{item.groupType==23?'门店现货':item.pdSpu.type==10?'品牌直发':'跨境保税'}}</view>
+                        <view wx:for="{{item.textTags}}" wx:for-index="tagIndex" wx:for-item="tagItem" wx:key="*this">{{tagItem}}</view>
+                    </view>
+                    <view class="cell20PriceAndCountry">
+                        <view class="cell20PriceView">
+                            <view class="cell20Price">￥{{priceFormat.priceFormat(item.discountRetailPriceMin)}}</view>
+                            <view class="cell20Price3" hidden="{{item.discountExistNow==false}}">￥{{priceFormat.priceFormat(item.retailPriceMin)}}</view>
+                        </view>
+                        <view class="cell20Country">
+                            <image lazyLoad="{{true}}" mode="aspectFill" src="{{item.pdSpu.pdBrand.pdCountry.picUrlAll}}?x-oss-process=image/resize,w_20"></image>
+                            <view>{{item.pdSpu.pdBrand.pdCountry.name}}</view>
+                        </view>
+                    </view>
+                </view>
+                <button bindtap="goLimitTimeList" class="cell10BottomButton" data-groupindex="{{groupIndex}}">查看更多商品</button>
+            </view>
+        </view>
+        <view class="groupView">
+            <view class="groupTop">
+                <view class="groupTopTitleView">
+                    <view class="groupTopTitle">为你推荐</view>
+                </view>
+                <view class="groupTopSubView">
+                    <view class="groupTopSub">跟好友一起买 更划算</view>
+                </view>
+            </view>
+            <view class="lineBottomView">
+                <image bindtap="goLookAllSpu" class="homeLineImage1" src="../../../images/spu/home_line_1.png"></image>
+                <view class="lineBottomViewRight">
+                    <image bindtap="goRecommend" class="homeLineImage2" src="../../../images/spu/home_line_2.png"></image>
+                    <image class="homeLineImage3" src="../../../images/spu/home_line_3.png">
+                        <button openType="contact"></button>
+                    </image>
+                </view>
+            </view>
+            <view class="homeBottomTitle">已经拉到底了</view>
+        </view>
+    </view>
+</view>
+<wxs module="dateUtil" src="../../../utils/dateFormat.wxs" />
+<wxs module="priceFormat" src="../../../utils/priceFormat.wxs" />

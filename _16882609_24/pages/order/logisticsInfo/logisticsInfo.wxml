@@ -1,0 +1,32 @@
+<view class="logisticsPage" style="padding-bottom: {{32+(isIphoneX?68*systemInfo.screenWidth/750:0)}}rpx" wx:if="{{expressTraceInfo!=null}}">
+    <view class="whiteView">
+        <view class="logisticsHeader">
+            <image src="{{expressTraceInfo.picUrlAll}}"></image>
+            <view class="rightView">
+                <view>
+                    <view class="bsExpressName">物流公司：{{expressTraceInfo.bsExpress.name}}</view>
+                    <view class="bsExpressMainNo">物流单号：{{expressTraceInfo.mailNo}}
+            <view bindtap="mainNoCopyButtonMethod" class="mainNoCopy">复制</view>
+                    </view>
+                    <view class="telephone">物流电话：{{expressTraceInfo.bsExpress.telephone}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="whiteView" wx:if="{{expressTraceInfo.bsExpressTraces!=0}}">
+        <view class="logisticsDetail">物流明细</view>
+        <view class="logisticsDetailInfo">
+            <view class="logisticsDetailInfoCell" wx:for="{{expressTraceInfo.bsExpressTraces}}" wx:key="bsExpressTraceId">
+                <view class="contextPoint"></view>
+                <view class="context">{{item.context}}</view>
+                <view class="createTime">{{dateUtil.dateFormat(item.ftime,'MM/dd hh:mm')}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="logisticsEmptyView" wx:else>
+        <image class="logisticsEmptyImage" src="../../../images/order/logistics_empty.png"></image>
+        <view class="logisticsEmptyText1">暂未查询到物流明细</view>
+        <view class="logisticsEmptyText2">数据的同步一般需要一段时间，请稍微再试。</view>
+    </view>
+</view>
+<wxs module="dateUtil" src="../../../utils/dateFormat.wxs" />

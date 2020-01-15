@@ -1,0 +1,161 @@
+<view class="pageInfo" wx:if="{{ocOrderInfo!=null}}">
+    <view class="navBar" style="height: {{systemInfo.statusBarHeight+44}}px;" wx:if="{{isWhiteBar}}">
+        <view class="navBarTitle" style="margin-top: {{systemInfo.statusBarHeight}}px">订单详情
+      <image class="navBarBackButtonImage" src="/images/common/pageBackblack.png"></image>
+            <view bindtap="backButtonMethod" class="backButton"></view>
+        </view>
+    </view>
+    <view class="navBar" style="height: {{systemInfo.statusBarHeight+44}}px;background-color:transparent;" wx:else>
+        <view class="navBarTitle" style="margin-top: {{systemInfo.statusBarHeight}}px;color:white">订单详情
+      <image class="navBarBackButtonImage" src="/images/common/pageBack.png"></image>
+            <view bindtap="backButtonMethod" class="backButton"></view>
+        </view>
+    </view>
+    <image class="headerImage" src="/images/order/order_status_{{ocOrderInfo.ocOrder.showStatus}}.png">
+        <view class="orderStatus">{{ocOrderInfo.ocOrder.showStatusStr}}</view>
+        <view class="orderPayTime" hidden="{{ocOrderInfo.ocOrder.showStatus!=10}}">剩余支付时间：{{dateUtil.dateFormat(ocOrderInfo.ocOrder.payTimeET-nowtimestamp,'mm:ss')}}</view>
+    </image>
+    <view class="whiteView">
+        <block wx:if="{{ocOrderInfo.ocOrder.groupType==23}}">
+            <view class="topView betweenView">
+                <view>配送方式</view>
+                <view class="topViewRight">{{ocOrderInfo.ocOrder.expectDeliveryType==10?'快递或同城配送':'门店自提'}}</view>
+            </view>
+            <view class="deliveryTypeExplain">{{ocOrderInfo.ocOrder.expectDeliveryType==10?'门店将根据收货地址为你进行同城配送或快递发货。':'你可以在门店营业时间内任意时间到店取货。'}}</view>
+        </block>
+        <view class="topView" wx:if="{{ocOrderInfo.ocOrder.expectDeliveryType==10}}">收货地址</view>
+        <view class="topView betweenView" wx:else>
+            <view>自提地址</view>
+            <view class="betweenView">
+                <button bindtap="phoneCall" class="phoneCallButton">拨打电话</button>
+            </view>
+        </view>
+        <view class="addressView">
+            <block wx:if="{{ocOrderInfo.ocOrder.expectDeliveryType==10}}">
+                <view class="addressTitle">{{ocOrderInfo.ocOrder.ocOrderInfo.name}} {{ocOrderInfo.ocOrder.ocOrderInfo.mobile}}</view>
+                <view>{{ocOrderInfo.ocOrder.ocOrderInfo.cityName}} {{ocOrderInfo.ocOrder.ocOrderInfo.areaName}} {{ocOrderInfo.ocOrder.ocOrderInfo.address}}</view>
+            </block>
+            <block wx:else>
+                <view class="addressTitle">{{ocOrderInfo.ocOrder.spShop.sname}}</view>
+                <view>{{ocOrderInfo.ocOrder.spShop.city.name}}{{ocOrderInfo.ocOrder.spShop.area.name}}{{ocOrderInfo.ocOrder.spShop.address}}</view>
+            </block>
+        </view>
+    </view>
+    <view class="whiteView" wx:if="{{ocOrderInfo.ocOrder.ocPackages.length>0&&ocOrderInfo.ocOrder.ocPackages[0].deliveryType!=20}}">
+        <view class="topView">物流信息</view>
+        <block wx:if="{{ocOrderInfo.ocOrder.ocPackages[0].deliveryType==10}}">
+            <view bindtap="goLogisticsInfo" class="logisticsCell addressView" data-index="{{index}}" style="{{index==ocOrderInfo.ocOrder.ocPackages.length-1?'border-bottom: none':''}}" wx:for="{{ocOrderInfo.ocOrder.ocPackages}}" wx:key="ocPackageId">
+                <view class="betweenView">
+                    <view class="addressTitle">{{item.bsExpress.name}} {{item.bsExpress.telephone}}</view>
+                    <image class="logisticsArrow" src="../../../images/common/rightArrows.png"></image>
+                </view>
+                <view class="logisticsDetail">{{item.bsExpressTraces[0].context}}</view>
+            </view>
+        </block>
+        <view class="addressView" wx:else>
+            <view class="addressTitle">{{ocOrderInfo.ocOrder.ocPackages[0].deliveryTypeStr}}</view>
+            <view>{{ocOrderInfo.ocOrder.ocPackages[0].deliveryMemo}}</view>
+        </view>
+    </view>
+    <view class="whiteView">
+        <view class="topView betweenView">
+            <view>商品清单</view>
+            <view class="ocOrderDetailsQty">共计{{ocOrderInfo.ocOrder.qty}}件</view>
+        </view>
+        <view class="ocOrderDetailsTable">
+            <view class="ocOrderDetailsCell betweenView" wx:for="{{ocOrderInfo.ocOrder.ocOrderDetails}}" wx:key="ocOrderDetailId">
+                <image mode="aspectFill" src="{{item.picUrlAll}}?x-oss-process=image/resize,w_350"></image>
+                <view class="ocOrderDetailsCellRigth">
+                    <view class="itemTitle">{{item.title}}</view>
+                    <view class="spuTagView">
+                        <view>{{ocOrderInfo.ocOrder.groupType==23?'门店现货':ocOrderInfo.ocOrder.type==10?'品牌直发':'跨境保税'}}</view>
+                        <view wx:if="{{ocOrderInfo.ocOrder.expectDeliveryType==10&&(ocOrderInfo.ocOrder.freight==0||ocOrderInfo.ocOrder.freight==undefined)}}">{{ocOrderInfo.ocOrder.type==10?'包邮':'包税包邮'}}</view>
+                    </view>
+                    <view class="skunameShort">{{item.skunameShort}}</view>
+                    <view class="priceAndQty betweenView">
+                        <view class="priceAndQtyPrice">￥{{priceFormat.priceFormat(item.retailPrice)}}</view>
+                        <view class="endView">
+                            <view class="qtySymbol">×</view>
+                            <view>{{item.qty}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="whiteView">
+        <view class="topView">订单结算</view>
+        <view class="payViewInfo">
+            <view class="betweenView">
+                <view>商品总额</view>
+                <view class="payViewInfoRight">￥{{priceFormat.priceFormat(ocOrderInfo.ocOrder.itemAmount)}}</view>
+            </view>
+            <view class="payViewInfoFreight betweenView" wx:if="{{ocOrderInfo.ocOrder.expectDeliveryType==10}}">
+                <view>运费</view>
+                <view class="payViewInfoRight">￥{{priceFormat.priceFormat(ocOrderInfo.ocOrder.freight)}}</view>
+            </view>
+        </view>
+        <view class="payTotalView betweenView">
+            <view class="payTotalViewTitle">合计</view>
+            <view>￥{{priceFormat.priceFormat(ocOrderInfo.ocOrder.totalAmount)}}</view>
+        </view>
+    </view>
+    <view class="whiteView" wx:if="{{ocOrderInfo.ocOrder.bsPay!=undefined}}">
+        <view class="topView">支付方式</view>
+        <view class="payTypeView betweenView">
+            <view class="payTypeTitle">{{ocOrderInfo.ocOrder.bsPay.payType==10?'微信支付':'门店充值卡支付'}}</view>
+            <view wx:if="{{ocOrderInfo.ocOrder.bsPay.payType==72}}">卡号：{{ocOrderInfo.ocOrder.bsPay.outPayNo}}</view>
+        </view>
+    </view>
+    <view class="whiteView">
+        <view class="topView betweenView">
+            <view>订单信息</view>
+            <button class="contactButton" openType="contact">在线客服</button>
+        </view>
+        <view class="orderInfoDisplay">
+            <view class="orderInfoDisplayList">
+                <view>订单编号</view>
+                <view class="orderInfoDisplayRight">
+                    <view class="orderNoDisplay">{{ocOrderInfo.ocOrder.orderNo}}</view>
+                    <view bindtap="orderNoCopyButtonMethod" class="orderNoCopy">复制</view>
+                </view>
+            </view>
+            <view class="orderInfoDisplayList">
+                <view>下单时间</view>
+                <view class="orderInfoDisplayRight">{{dateUtil.dateFormat(ocOrderInfo.ocOrder.createTime,'yyyy/MM/dd hh:mm:ss')}}</view>
+            </view>
+            <view class="orderInfoDisplayList" hidden="{{ocOrderInfo.ocOrder.showStatus!=60&&ocOrderInfo.ocOrder.showStatus!=80&&ocOrderInfo.ocOrder.showStatus!=90}}">
+                <view>发货时间</view>
+                <view class="orderInfoDisplayRight">{{dateUtil.dateFormat(deliveryTime,'yyyy/MM/dd hh:mm:ss')}}</view>
+            </view>
+            <view class="orderInfoDisplayList" hidden="{{ocOrderInfo.ocOrder.showStatus!=60&&ocOrderInfo.ocOrder.showStatus!=80&&ocOrderInfo.ocOrder.showStatus!=90}}" wx:if="{{ocOrderInfo.ocOrder.deliveryType==10}}">
+                <view>快递方式</view>
+                <view class="orderInfoDisplayRight">{{ocOrderInfo.ocOrder.bsExpress.name}}</view>
+            </view>
+            <view class="orderInfoDisplayList" hidden="{{ocOrderInfo.ocOrder.showStatus!=60&&ocOrderInfo.ocOrder.showStatus!=80&&ocOrderInfo.ocOrder.showStatus!=90}}" wx:if="{{ocOrderInfo.ocOrder.deliveryType==10}}">
+                <view>运单编号</view>
+                <view class="orderInfoDisplayRight">{{ocOrderInfo.ocOrder.mailNo}}</view>
+            </view>
+            <view class="orderInfoDisplayList" hidden="{{ocOrderInfo.ocOrder.showStatus!=80&&ocOrderInfo.ocOrder.showStatus!=90}}">
+                <view>确认收货</view>
+                <view class="orderInfoDisplayRight">{{dateUtil.dateFormat(receiveTime,'yyyy/MM/dd hh:mm:ss')}}</view>
+            </view>
+            <view class="orderInfoDisplayList" hidden="{{ocOrderInfo.ocOrder.showStatus!=90}}">
+                <view>提交评价</view>
+                <view class="orderInfoDisplayRight">{{dateUtil.dateFormat(commentTime,'yyyy/MM/dd hh:mm:ss')}}</view>
+            </view>
+        </view>
+    </view>
+    <view style="height: 112rpx;" wx:if="{{ocOrderInfo.mySelfOrder&&(ocOrderInfo.ocOrder.showStatus==10||ocOrderInfo.ocOrder.showStatus==60||ocOrderInfo.ocOrder.showStatus==80)}}"></view>
+    <view style="height: 60rpx;"></view>
+    <view class="footerView" wx:if="{{ocOrderInfo.mySelfOrder&&(ocOrderInfo.ocOrder.showStatus==10||ocOrderInfo.ocOrder.showStatus==60||ocOrderInfo.ocOrder.showStatus==80)}}">
+        <block wx:if="{{ocOrderInfo.mySelfOrder}}">
+            <button bindtap="cancelButtonMethod" hidden="{{ocOrderInfo.ocOrder.showStatus!=10}}">取消订单</button>
+            <button bindtap="goPayOrder" class="darkButton" hidden="{{ocOrderInfo.ocOrder.showStatus!=10}}">立即支付</button>
+            <button bindtap="sureReceiveButtonMethod" class="darkButton" hidden="{{ocOrderInfo.ocOrder.showStatus!=60}}">确认收货</button>
+            <button bindtap="goComment" class="darkButton" hidden="{{ocOrderInfo.ocOrder.showStatus!=80}}">发表评价</button>
+        </block>
+    </view>
+</view>
+<wxs module="priceFormat" src="../../../utils/priceFormat.wxs" />
+<wxs module="dateUtil" src="../../../utils/dateFormat.wxs" />

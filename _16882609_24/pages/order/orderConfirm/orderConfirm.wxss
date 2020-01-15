@@ -1,0 +1,451 @@
+page {
+    background-color: #f4f4f4;
+}
+
+.pageInfo {
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
+    position: relative;
+}
+
+.navBar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 90;
+    background-color: white;
+}
+
+.navBarTitle {
+    position: relative;
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    color: #272727;
+    font-size: 38rpx;
+    font-weight: bold;
+}
+
+.navBarBackButtonImage {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 13px;
+    left: 40rpx;
+}
+
+.backButton {
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    top: 0;
+    left: 32rpx;
+}
+
+.whiteView {
+    background-color: white;
+    border-radius: 15rpx;
+    margin: 32rpx 40rpx 0;
+    padding: 0 32rpx;
+}
+
+.startView {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.centerView {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.endView {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.betweenView {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topView {
+    height: 96rpx;
+    font-size: 26rpx;
+    color: #363737;
+    font-weight: bold;
+    border-bottom: 1rpx solid #e6e6e6;
+    line-height: 96rpx;
+}
+
+.chooseDeliveryTypeView {
+    border-bottom: 1rpx solid #e6e6e6;
+    height: 88rpx;
+}
+
+.typeView {
+    width: 334rpx;
+    font-size: 26rpx;
+    color: #6B6B6B;
+    height: 100%;
+    position: relative;
+}
+
+.typeViewMiddle {
+    width: 1rpx;
+    height: 20rpx;
+    border-left: 1rpx solid #e6e6e6;
+}
+
+.typeView image {
+    margin-right: 8rpx;
+    width: 32rpx;
+    height: 32rpx;
+}
+
+.typeViewChoosed {
+    font-weight: bold;
+    color: #5f7fdc;
+}
+
+.typeViewBottom {
+    position: absolute;
+    left: 118rpx;
+    right: 118rpx;
+    bottom: 0;
+    height: 4rpx;
+    background-color: #5f7fdc;
+}
+
+.deliveryTypeExplain {
+    font-size: 22rpx;
+    color: #6B6B6B;
+    height: 72rpx;
+    border-bottom: 1rpx solid #e6e6e6;
+    line-height: 72rpx;
+}
+
+.addressView {
+    padding: 32rpx 0;
+    font-size: 20rpx;
+    color: #272727;
+}
+
+.noAddressView {
+    color: #5f7fdc;
+    font-size: 26rpx;
+    line-height: 26rpx;
+}
+
+.addressArrow {
+    width: 20rpx;
+    height: 20rpx;
+}
+
+.addressTitle {
+    font-size: 26rpx;
+    line-height: 26rpx;
+    height: 26rpx;
+    flex: 1;
+    overflow: hidden;
+    font-weight: bold;
+    margin-bottom: 16rpx;
+}
+
+.phoneCallButton {
+    color: #5f7fdc;
+    height: 42rpx;
+    width: 125rpx;
+    line-height: 42rpx;
+    border-radius: 21rpx;
+    border: 1rpx solid #e6e6e6;
+    font-size: 16rpx;
+    background-color: white;
+    margin-left: 16rpx;
+}
+
+.phoneCallButton::after {
+    border: none;
+}
+
+.idCerView {
+    height: 90rpx;
+    font-size: 26rpx;
+    color: #B2B2B2;
+}
+
+.idCerViewRightTitle {
+    margin-right: 8rpx;
+}
+
+.ocOrderDetailsQty {
+    font-size: 22rpx;
+    font-weight: normal;
+    color: #363737;
+}
+
+.ocOrderDetailsTable {
+    padding-bottom: 32rpx;
+}
+
+.ocOrderDetailsCell {
+    margin-top: 32rpx;
+    height: 188rpx;
+}
+
+.ocOrderDetailsCell image {
+    border-radius: 15rpx;
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 186rpx;
+    width: 186rpx;
+    margin-right: 16rpx;
+    border: 1rpx solid #e6e6e6;
+}
+
+.ocOrderDetailsCellRigth {
+    position: relative;
+    flex: 1;
+    height: 188rpx;
+}
+
+.itemTitle {
+    color: #363737;
+    font-size: 24rpx;
+    display: -webkit-box;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.spuTagView {
+    margin-top: 8rpx;
+    height: 34rpx;
+    overflow: hidden;
+}
+
+.spuTagView view {
+    display: inline-block;
+    font-size: 18rpx;
+    padding: 0 12rpx;
+    height: 34rpx;
+    line-height: 36rpx;
+    border-radius: 0px 5.6rpx 5.6rpx 5.6rpx;
+    color: #5F7FDC;
+    background-color: rgba(95,127,220,0.1);
+    vertical-align: top;
+    margin-right: 8rpx;
+}
+
+.skunameShort {
+    margin-top: 8rpx;
+    font-weight: bold;
+    font-size: 20rpx;
+    color: #363737;
+}
+
+.priceAndQty {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 24rpx;
+    font-size: 18rpx;
+}
+
+.priceAndQtyPrice {
+    font-size: 24rpx;
+    line-height: 24rpx;
+    color: #5f7fdc;
+    font-weight: bold;
+}
+
+.qtySymbol {
+    font-size: 18rpx;
+    margin-right: 4rpx;
+}
+
+.payViewInfo {
+    padding: 24rpx 0;
+    font-size: 22rpx;
+    color: #B2B2B2;
+    line-height: 30rpx;
+    border-bottom: 1rpx solid #e6e6e6;
+}
+
+.payViewInfoRight {
+    color: #272727;
+}
+
+.payViewInfoFreight {
+    margin-top: 24rpx;
+}
+
+.payViewInfoFreightExplain {
+    margin-top: 16rpx;
+    text-align: right;
+}
+
+.payTotalView {
+    height: 96rpx;
+    font-size: 22rpx;
+    color: #5f7fdc;
+}
+
+.payTotalViewTitle {
+    color: #363737;
+}
+
+.payTypeView {
+    height: 100rpx;
+    font-size: 28rpx;
+    color: #363737;
+}
+
+.payTypeImage {
+    width: 36rpx;
+    height: 36rpx;
+    margin-right: 16rpx;
+}
+
+.payTypeView image {
+    width: 32rpx;
+    height: 32rpx;
+}
+
+.InputView {
+    border-top: 1rpx solid #e6e6e6;
+    height: 80rpx;
+    margin-left: 46rpx;
+    font-size: 24rpx;
+    color: #272727;
+}
+
+.InputView input {
+    height: 80rpx;
+}
+
+.outPayNoInputPlaceholder {
+    color: #b2b2b2;
+}
+
+.payTypeExplain {
+    margin: 8rpx 40rpx 0;
+    font-size: 22rpx;
+    color: #b2b2b2;
+    line-height: 32rpx;
+}
+
+.footerView {
+    position: fixed;
+    height: 158rpx;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    bottom: constant(safe-area-inset-bottom);
+    bottom: env(safe-area-inset-bottom);
+    background-color: transparent;
+    z-index: 5;
+}
+
+.footerButtonView {
+    margin: 32rpx 40rpx;
+    padding: 0 64rpx;
+    height: 94rpx;
+    background-color: #5f7fdc;
+    color: white;
+    border-radius: 15rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 22rpx;
+}
+
+.footerButtonView::after {
+    border: none;
+}
+
+.footerButtonTitle {
+    font-weight: bold;
+    font-size: 32rpx;
+}
+
+.orderAgainPayView {
+    border-radius: 30rpx 30rpx 0 0;
+    background-color: white;
+    position: relative;
+}
+
+.orderAgainPayTopView {
+    height: 120rpx;
+    margin: 0 40rpx;
+    border-bottom: 1rpx solid #dfdfdf;
+    padding-top: 8rpx;
+    line-height: 112rpx;
+    font-size: 32rpx;
+    color: #b2b2b2;
+    text-align: center;
+}
+
+.orderAgainPayTime {
+    display: inline;
+    color: #e84b57;
+    font-weight: bold;
+}
+
+.orderAgainPayCloseImage {
+    position: absolute;
+    top: 24rpx;
+    right: 32rpx;
+    width: 45rpx;
+    height: 45rpx;
+}
+
+.orderAgainPayAddress {
+    font-size: 24rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 40rpx 40rpx 0;
+    color: #b2b2b2;
+}
+
+.orderAgainPayAddressInfo {
+    color: #363737;
+    flex: 1;
+}
+
+.orderAgainPaySubmitView {
+    margin: 56rpx 40rpx 32rpx;
+    align-items: center;
+    height: 94rpx;
+    background-color: #5f7fdc;
+    color: white;
+    border-radius: 8rpx;
+    text-align: center;
+}
+
+.orderAgainPaySubmitViewBuyNow {
+    font-size: 32rpx;
+    line-height: 32rpx;
+    font-weight: bold;
+}
+
+.orderAgainPaySubmitViewBuyNowExplain {
+    margin-top: 8rpx;
+    font-size: 20rpx;
+}

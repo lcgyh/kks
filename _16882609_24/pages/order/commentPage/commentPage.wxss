@@ -1,0 +1,244 @@
+page {
+    background-color: #f4f4f4;
+}
+
+.navBar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 90;
+    background-color: white;
+}
+
+.navBarTitle {
+    position: relative;
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    color: #272727;
+    font-size: 38rpx;
+    font-weight: bold;
+}
+
+.navBarBackButtonImage {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 13px;
+    left: 40rpx;
+}
+
+.backButton {
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    top: 0;
+    left: 32rpx;
+}
+
+.scrollView {
+    height: 198rpx;
+    width: 670rpx;
+    background-color: white;
+    padding: 0 40rpx;
+    white-space: nowrap;
+}
+
+.scrollViewInfo {
+    display: inline-block;
+    vertical-align: top;
+    height: 165rpx;
+    width: 165rpx;
+    position: relative;
+    padding: 1rpx;
+    margin-right: 16rpx;
+    margin-top: 24rpx;
+}
+
+.scrollImage {
+    height: 150rpx;
+    width: 150rpx;
+    margin-left: 6rpx;
+    margin-top: 1rpx;
+    border-radius: 15rpx;
+    border: 1rpx solid #e6e6e6;
+}
+
+.scrollImageChoosed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 165rpx;
+    width: 165rpx;
+}
+
+.numExplainView {
+    margin-top: 8rpx;
+    font-size: 22rpx;
+    color: #e84b57;
+    padding: 0 40rpx;
+}
+
+.whiteView {
+    margin: 32rpx 40rpx 0;
+    border-radius: 10rpx;
+    background-color: white;
+}
+
+.skuInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 150rpx;
+    padding: 32rpx 32rpx 40rpx;
+}
+
+.skuInfo image {
+    height: 148rpx;
+    width: 148rpx;
+    border: 1rpx solid #e6e6e6;
+    margin-right: 24rpx;
+    border-radius: 15rpx;
+}
+
+.skuInfoRight {
+    flex: 1;
+    font-size: 24rpx;
+    color: #272727;
+}
+
+.skuInfoRightSkunameShort {
+    margin-top: 16rpx;
+    font-size: 20rpx;
+    font-weight: bold;
+}
+
+.commentRateView {
+    height: 48rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 32rpx;
+    margin: 0 32rpx;
+}
+
+.commentRateTitle {
+    font-size: 32rpx;
+    color: #272727;
+    margin-right: 24rpx;
+}
+
+.commentContent {
+    padding: 32rpx 32rpx 0;
+    height: 230rpx;
+    font-size: 26rpx;
+    color: #272727;
+}
+
+.commentContentPlaceholder {
+    color: #b2b2b2;
+}
+
+.commentImageViewInfo {
+    font-size: 0;
+    padding-bottom: 32rpx;
+}
+
+.commentImageView {
+    display: inline-block;
+    height: 180rpx;
+    width: 180rpx;
+    margin: 32rpx 0 0 32rpx;
+    position: relative;
+}
+
+.commentImage {
+    border-radius: 8rpx;
+    height: 180rpx;
+    width: 180rpx;
+}
+
+.commentImageClose {
+    position: absolute;
+    height: 36rpx;
+    width: 36rpx;
+    right: -8rpx;
+    top: -8rpx;
+}
+
+.commentImageViewAdd {
+    border: 1rpx solid #e6e6e6;
+    border-radius: 8rpx;
+}
+
+.commentImageViewAddImage {
+    height: 52rpx;
+    width: 52rpx;
+    position: absolute;
+    top: 50rpx;
+    left: 64rpx;
+}
+
+.commentImageViewAddView {
+    font-size: 20rpx;
+    color: #b2b2b2;
+    position: absolute;
+    top: 110rpx;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.anonymousView {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    color: #b2b2b2;
+    font-size: 20rpx;
+    margin: 20rpx 40rpx 0;
+}
+
+.anonymousView image {
+    height: 26rpx;
+    width: 26rpx;
+    padding-right: 8rpx;
+}
+
+.summitButton {
+    margin: 64rpx 40rpx 32rpx;
+    background-color: #5f7fdc;
+    color: white;
+    font-size: 36rpx;
+    border-radius: 10rpx;
+    height: 94rpx;
+    text-align: center;
+    line-height: 94rpx;
+}
+
+.summitSuccessPage {
+    text-align: center;
+}
+
+.summitSuccessIcon {
+    margin-top: 104rpx;
+}
+
+.summitSuccessTitle {
+    margin-top: 64rpx;
+    color: #000;
+    font-size: 32rpx;
+}
+
+.goBackButton {
+    margin: 112rpx 40rpx 0;
+    background-color: #5f7fdc;
+    color: white;
+    font-size: 36rpx;
+    border-radius: 10rpx;
+    height: 94rpx;
+}

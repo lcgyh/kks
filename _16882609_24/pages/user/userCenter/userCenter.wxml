@@ -1,0 +1,131 @@
+<view class="userCenter" wx:if="{{pageInfo!=null}}">
+    <view class="navBarView" style="top:{{systemInfo.statusBarHeight}}px">
+        <view class="navBarTitle">我的</view>
+    </view>
+    <image class="headerBackImage" src="../../../images/user/userCenterHeaderBack.png"></image>
+    <view class="userIconView" style="padding-top:{{systemInfo.statusBarHeight+46+104*systemInfo.screenWidth/750}}px">
+        <button bindgetuserinfo="bindGetUserInfo" class="userInfoButton" openType="getUserInfo" style="top:{{systemInfo.statusBarHeight+46+104*systemInfo.screenWidth/750}}px"></button>
+        <image class="userIconImage" src="{{pageInfo.ucUser.headUrl.length>10?pageInfo.ucUser.headUrl:'../../../images/user/headDefaultIcon.png'}}"></image>
+        <view class="userName">{{pageInfo.ucUser.headUrl.length>10?pageInfo.ucUser.name:'点击登录'}}</view>
+    </view>
+    <view style="height: 24rpx;"></view>
+    <view bindtap="goAdviserDetail" class="whiteViewAdviser" wx:if="{{pageInfo.consultant.spShopConsultant!=undefined}}">
+        <view class="allOrderView">
+            <view class="allOrderLeft">我是顾问</view>
+            <view class="allOrderRightView">
+                <view class="allOrderRight" hidden="{{pageInfo.consultant.unReadOrderNum==0}}">有{{pageInfo.consultant.unReadOrderNum}}个新订单</view>
+                <image class="allOrderImage" src="../../../images/user/allOrderArrow.png"></image>
+            </view>
+        </view>
+        <view class="dataInfoCell">
+            <view class="dataInfoTop">{{priceFormat.priceFormat(pageInfo.consultant.amountWithDay)}}</view>
+            <view class="dataInfoBottom">今日销售额(元)</view>
+        </view>
+        <view class="dataInfoCell data2">
+            <view class="dataInfoTop">{{priceFormat.priceFormat(pageInfo.consultant.amountWithMonth)}}</view>
+            <view class="dataInfoBottom">本月销售额(元)</view>
+        </view>
+        <view class="dataInfoCell" style="border-right: none;">
+            <view class="dataInfoTop">{{priceFormat.priceFormat(pageInfo.consultant.amountWithTotal)}}</view>
+            <view class="dataInfoBottom">累计销售额(元)</view>
+        </view>
+    </view>
+    <view class="whiteViewOrder">
+        <view bindtap="goOrderList" class="allOrderView">
+            <view class="allOrderLeft">我的订单</view>
+            <view class="allOrderRightView">
+                <view class="allOrderRight">查看全部订单</view>
+                <image class="allOrderImage" src="../../../images/user/allOrderArrow.png"></image>
+            </view>
+        </view>
+        <view class="orderStatusView">
+            <view bindtap="goOrderList" class="orderStatusViewInfo" data-showStatus="{{item.status}}" wx:for="{{orderStatusAry}}" wx:key="status">
+                <image class="orderStatusViewImage" src="{{'../../../images/user/order_'+item.status+'.png'}}"></image>
+                <view class="orderStatusViewTitle">{{item.statusStr}}</view>
+                <view class="orderStatusViewDots" hidden="{{!(item.num>0)}}">{{item.num}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="whiteView">
+        <view class="cellView cellViewBottomLine">
+            <view class="cellLeftView">
+                <image class="cellLeftImage" src="../../../images/user/userCenter_fav.png"></image>
+                <view class="cellTitle">我喜欢的</view>
+            </view>
+            <image class="cellArrow" src="../../../images/common/rightArrows.png"></image>
+            <button bindgetuserinfo="bindGetUserInfoFavourite" bindtap="{{pageInfo.ucUser.headUrl.length>10?'goFavouriteListPage':''}}" class="cellButton" openType="{{pageInfo.ucUser.headUrl.length>10?'':'getUserInfo'}}"></button>
+        </view>
+        <view bindtap="goIdCertificationPage" class="cellView cellViewBottomLine">
+            <view class="cellLeftView">
+                <image class="cellLeftImage" src="../../../images/user/userCenter_ucreal.png"></image>
+                <view class="cellTitle">实名信息</view>
+            </view>
+            <view class="cellRightView">
+                <view class="cellRightTitle" style="color:#5F7FDC" wx:if="{{pageInfo.ucReal==undefined}}">立即实名认证</view>
+                <view class="cellRightTitle" wx:else>{{pageInfo.ucReal.realName}} {{pageInfo.ucReal.idNoEncryption}}</view>
+                <image class="cellArrow" src="../../../images/common/rightArrows.png"></image>
+            </view>
+        </view>
+        <view class="cellView">
+            <view class="cellLeftView">
+                <image class="cellLeftImage" src="../../../images/user/userCenter_phone.png"></image>
+                <view class="cellTitle">手机号码</view>
+            </view>
+            <view class="cellRightView">
+                <view class="cellRightTitle" style="color:#5F7FDC" wx:if="{{pageInfo.ucUser.mobile==undefined}}">立即绑定</view>
+                <view class="cellRightTitle" wx:else>{{pageInfo.ucUser.mobileEncryption}}</view>
+                <image class="cellArrow" src="../../../images/common/rightArrows.png"></image>
+            </view>
+            <button bindgetphonenumber="getPhoneNumber" class="cellButton" openType="getPhoneNumber"></button>
+        </view>
+    </view>
+    <view class="whiteView" wx:if="{{pageInfo.userCLoginB}}">
+        <view bindtap="goToBApplet" class="cellView">
+            <view class="cellLeftView">
+                <image class="cellLeftImage" src="../../../images/user/userCenter_ucreal.png"></image>
+                <view class="cellTitle">管理店铺</view>
+            </view>
+            <image class="cellArrow" src="../../../images/common/rightArrows.png"></image>
+        </view>
+    </view>
+    <view class="whiteView">
+        <view bindtap="phoneCall" class="cellView cellViewBottomLine" wx:if="{{pageInfo.consultant.myShopConsultant!=undefined}}">
+            <view class="cellLeftView">
+                <image class="cellLeftImage" src="../../../images/user/userCenter_aviser.png"></image>
+                <view class="cellTitle">我的专属顾问</view>
+            </view>
+            <view class="cellRightView">
+                <view class="cellRightTitle">{{pageInfo.consultant.myShopConsultant.name}} {{pageInfo.consultant.myShopConsultant.consultantUser.mobileEncryption}}</view>
+                <image class="cellArrow" src="../../../images/common/rightArrows.png"></image>
+            </view>
+        </view>
+        <view bindtap="goAboutShop" class="cellView cellViewBottomLine">
+            <view class="cellLeftView">
+                <image class="cellLeftImage" src="../../../images/user/userCenter_abort.png"></image>
+                <view class="cellTitle">关于「{{pageInfo.spShop.sname}} × KKID联名店」</view>
+            </view>
+            <image class="cellArrow" src="../../../images/common/rightArrows.png"></image>
+        </view>
+        <view bindtap="goRecommend" class="cellView">
+            <view class="cellLeftView">
+                <image class="cellLeftImage" src="../../../images/user/userCenter_recommend.png"></image>
+                <view class="cellTitle">推荐给朋友</view>
+            </view>
+            <image class="cellArrow" src="../../../images/common/rightArrows.png"></image>
+        </view>
+    </view>
+    <view class="whiteView" wx:if="{{pageInfo.spShopCustomerCount>1}}">
+        <view bindtap="goChangeShop" class="cellView">
+            <view class="cellLeftView">
+                <image class="cellLeftImage" src="../../../images/user/userCenter_change.png"></image>
+                <view class="cellTitle">切换店铺</view>
+            </view>
+            <view class="cellRightView">
+                <view class="cellRightTitle">还访问过{{pageInfo.spShopCustomerCount-1}}家KKID联名店</view>
+                <image class="cellArrow" src="../../../images/common/rightArrows.png"></image>
+            </view>
+        </view>
+    </view>
+    <view style="height: 1rpx;"></view>
+</view>
+<wxs module="priceFormat" src="../../../utils/priceFormat.wxs" />

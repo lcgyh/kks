@@ -1,0 +1,136 @@
+.activityPage {
+    padding: 1rpx 40rpx;
+}
+
+.spuListCell {
+    display: inline-block;
+    vertical-align: top;
+    width: 315rpx;
+    margin-top: 40rpx;
+    position: relative;
+}
+
+.spuImage {
+    width: 313rpx;
+    height: 313rpx;
+    border: 1rpx solid #e6e6e6;
+    border-radius: 15rpx;
+}
+
+.tagImage {
+    position: absolute;
+    border-radius: 15rpx;
+    width: 315rpx;
+    height: 315rpx;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.spuListSubtitle {
+    margin-top: 24rpx;
+    color: #363737;
+    font-size: 24rpx;
+    height: 24rpx;
+    line-height: 24rpx;
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.spuTitle {
+    margin-top: 16rpx;
+    color: #363737;
+    font-size: 20rpx;
+    height: 52rpx;
+    line-height: 26rpx;
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.spuSpuTagView {
+    margin-top: 16rpx;
+    height: 34rpx;
+    overflow: hidden;
+}
+
+.spuSpuTagView view {
+    display: inline-block;
+    font-size: 18rpx;
+    padding: 0 12rpx;
+    height: 34rpx;
+    line-height: 36rpx;
+    border-radius: 0px 5.6rpx 5.6rpx 5.6rpx;
+    color: #E84B57;
+    background-color: rgba(232,75,87,0.1);
+    vertical-align: top;
+    margin-left: 8rpx;
+}
+
+.spuSpuTagView .spuSpuTag {
+    color: #5f7fdc;
+    background-color: rgba(95,127,220,0.1);
+    margin-left: 0;
+}
+
+.spuPriceAndCountry {
+    margin-top: 24rpx;
+    height: 30rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cell20PriceView {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.cell20Price {
+    color: #5f7fdc;
+    font-size: 30rpx;
+    line-height: 30rpx;
+    font-weight: bold;
+}
+
+.cell20Price3 {
+    color: #b2b2b2;
+    font-size: 22rpx;
+    line-height: 22rpx;
+    margin-left: 8rpx;
+    text-decoration: line-through;
+    margin-bottom: 5rpx;
+}
+
+.cell20Country {
+    height: 30rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    color: #363737;
+    font-size: 16rpx;
+}
+
+.cell20Country image {
+    height: 16rpx;
+    width: 16rpx;
+    margin-right: 5rpx;
+}
+
+.footerView {
+    text-align: center;
+    font-size: 22rpx;
+    color: #b2b2b2;
+    padding: 32rpx 0;
+}

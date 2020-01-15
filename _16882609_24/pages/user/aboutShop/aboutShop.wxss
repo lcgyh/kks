@@ -1,0 +1,69 @@
+.header {
+    height: 276rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-start;
+    align-items: center;
+    margin: 0 40rpx;
+    border-bottom: 1rpx solid #e6e6e6;
+}
+
+.shopPic {
+    width: 180rpx;
+    height: 180rpx;
+    border-radius: 8rpx;
+    border: 1rpx solid #e6e6e6;
+}
+
+.headerRightView {
+    margin-left: 16rpx;
+    flex: 1;
+}
+
+.shopName {
+    color: #1d1d1d;
+    font-size: 26rpx;
+    font-weight: bold;
+}
+
+.shopAdress {
+    color: #1d1d1d;
+    margin-top: 16rpx;
+    font-size: 22rpx;
+}
+
+.titleView {
+    margin-top: 64rpx;
+    color: #B2B2B2;
+    font-size: 24rpx;
+    margin: 64rpx 40rpx 0;
+}
+
+.contentView {
+    color: #272727;
+    font-size: 20rpx;
+    margin: 0 40rpx;
+    line-height: 36rpx;
+}
+
+.buttonFather {
+    position: relative;
+}
+
+button {
+    position: absolute;
+    right: 40rpx;
+    color: #272727;
+    border: 1rpx solid #B2B2B2;
+    height: 50rpx;
+    width: 140rpx;
+    border-radius: 25rpx;
+    font-size: 20rpx;
+    background-color: white;
+    top: 50%;
+    margin-top: -25rpx;
+}
+
+button::after {
+    border: none;
+}

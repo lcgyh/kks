@@ -1,0 +1,18 @@
+<view class="emptyPage" wx:if="{{dataList.length<1&&requestStatus==10}}">
+    <image src="../../../images/spu/favoriteEmpty.png"></image>
+    <view>你还没有添加喜欢的商品哦~</view>
+    <button bindtap="goHomePage">逛一逛</button>
+</view>
+<view class="listView" wx:else>
+    <view bindtap="spuCellTap" class="cellView" data-pditemid="{{item.pdItemId}}" wx:for="{{dataList}}" wx:key="pdItemId">
+        <view bindtouchend="touchE" bindtouchmove="touchM" bindtouchstart="touchS" class="cellInfo" data-pditemid="{{item.pdItemId}}" style="{{item.pdItemId==operationPdItemId?txtStyle:''}}">
+            <image class="commodityPic" lazyLoad="{{true}}" mode="aspectFill" src="{{item.pdItem.pdSpu.picUrlAll}}?x-oss-process=image/resize,w_350"></image>
+            <view class="rightView">
+                <view class="nameInfo">{{item.pdItem.title}}</view>
+                <view class="priceInfo">￥{{item.pdItem.retailPriceMin}}</view>
+            </view>
+        </view>
+        <view catchtap="cellDeleteMethod" class="cellDelete" data-index="{{index}}" data-pditemid="{{item.pdItemId}}">删除</view>
+    </view>
+    <image class="haowuquanImage" src="../../../images/common/haowuquan_recomment.png"></image>
+</view>

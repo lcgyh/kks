@@ -1,0 +1,37 @@
+<view class="commentPage" style="padding-top:{{systemInfo.statusBarHeight+44}}px;padding-bottom:{{isIphoneX?34:0}}px">
+    <view class="navBar" style="height: {{systemInfo.statusBarHeight+44}}px;">
+        <view class="navBarTitle" style="margin-top: {{systemInfo.statusBarHeight}}px">{{options.userCenter?'用户评价':'全部评价'}}
+      <image class="navBarBackButtonImage" src="/images/common/pageBackblack.png"></image>
+            <view bindtap="backButtonMethod" class="backButton"></view>
+        </view>
+    </view>
+    <view class="commentCell" wx:for="{{commentList}}" wx:key="ocCommentId">
+        <view class="commentUserInfo">
+            <image src="{{item.headUrl.length>10?item.headUrl:'../../../images/user/headDefaultIcon.png'}}"></image>
+            <view>{{item.name}}</view>
+        </view>
+        <view class="commentContent">
+            <view style="margin-left: 17rpx; margin-bottom: 8rpx;">
+                <van-rate readonly color="#5F7FDC" size="{{18*systemInfo.screenWidth/750}}" value="{{item.descScore}}" voidColor="#eee"></van-rate>
+            </view>
+            <view class="commentContentStr">{{item.status==20?'（评价内容已被删除）':item.content}}</view>
+            <block wx:if="{{item.status!=20}}">
+                <image bindtap="lookBigPic" class="{{item.ocCommentPics.length<3?'commentContentImageBig':'commentContentImage'}}" data-imageindex="{{imageIndex}}" data-index="{{index}}" mode="aspectFill" src="{{imageItem.picUrlAll+'?x-oss-process=image/resize,w_350'}}" wx:for="{{item.ocCommentPics}}" wx:for-index="imageIndex" wx:for-item="imageItem" wx:key="ocCommentPicId"></image>
+            </block>
+            <view class="skunameShort">{{dateUtil.dateFormat(item.createTime,'yyyy/MM/dd')}} {{item.skunameShort}}</view>
+            <view class="pdSpuTitle" hidden="{{!options.userCenter}}">{{item.pdSpu.title}}</view>
+        </view>
+    </view>
+    <view class="pageBottom">没有更多评价了</view>
+</view>
+<van-popup bind:close="lookBigPicClose" catchtouchmove="ture" customStyle="background-color: transparent" safeAreaInsetBottom="{{false}}" show="{{lookBigPicShow}}">
+    <view class="lookBigPicContent" style="width:{{systemInfo.windowWidth}}px;height:{{systemInfo.windowHeight}}px">
+        <swiper bindchange="swiperChange" circular="{{true}}" class="swiper-box" current="{{current}}" style="width:{{systemInfo.windowWidth}}px;height:{{systemInfo.windowHeight}}px">
+            <swiper-item wx:for="{{lookBigPicList}}" wx:key="ocCommentPicId">
+                <image bindtap="lookBigPicClose" class="slide-image" mode="aspectFit" src="{{item.picUrlAll}}?x-oss-process=image/resize,w_750"></image>
+            </swiper-item>
+        </swiper>
+        <view class="swiper-num">{{current+1}} | {{lookBigPicList.length}}</view>
+    </view>
+</van-popup>
+<wxs module="dateUtil" src="../../../utils/dateFormat.wxs" />

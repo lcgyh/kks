@@ -1,0 +1,274 @@
+<view class="spuDetailPage">
+    <image catchtap="goTopButtonMethod" class="goTop" hidden="{{goTopButtonHidden}}" src="../../../images/spu/goTop_float.png"></image>
+    <view class="spuDetailPageInfo" style="padding-bottom:{{152+(isIphoneX?34*750/systemInfo.screenWidth:0)}}rpx">
+        <view class="status-bar" style="padding-top:{{systemInfo.statusBarHeight}}px;background-color: {{titleHiddenWhether?'white':'transparent'}}">
+            <view class="navBarView">
+                <view class="navBarTitle" hidden="{{!titleHiddenWhether}}">商品详情</view>
+                <image class="backButtonImage" hidden="{{options.backFirst}}" src="/images/common/pageBackblack.png" style="top:{{23-18*systemInfo.screenWidth/750}}px"></image>
+                <view bindtap="backButtonMethod" class="backButton" hidden="{{options.backFirst}}"></view>
+                <image bindtap="backButtonMethod" class="firstBackImage" hidden="{{!options.backFirst}}" src="../../../images/spu/spu_detail_firstBack.png" style="top:{{22-31*systemInfo.screenWidth/750}}px"></image>
+            </view>
+        </view>
+        <block wx:if="{{spuInfo!=null}}">
+            <view class="swiperView">
+                <swiper bindchange="swiperChange" circular="{{true}}" class="swiper-box">
+                    <swiper-item wx:for="{{spuInfo.pdItem.pdSpu.pdSpuPicList}}" wx:key="pdSpuPicId">
+                        <image bindlongpress="longtapPicSave" class="slide-image" data-index="{{index}}" mode="aspectFill" src="{{item.picUrlAll}}?x-oss-process=image/resize,w_750"></image>
+                    </swiper-item>
+                </swiper>
+                <view class="swiper-num" hidden="{{spuInfo.pdItem.pdSpu.pdSpuPicList.length<2}}">{{swiperCurrent+1}}/{{spuInfo.pdItem.pdSpu.pdSpuPicList.length}}</view>
+                <image catchtap="favouriteButtonMethod" class="favImage" src="../../../images/spu/home_fav_{{spuInfo.pdItem.ucSubscribeFavorite==true?'true':'false'}}.png"></image>
+            </view>
+            <view class="spuBasicInfo">
+                <view class="brandAndSpuSaleAllQty">
+                    <view class="brandName">{{spuInfo.pdItem.pdSpu.pdBrand.name}}</view>
+                    <view class="spuSaleAllQty">已售{{spuInfo.pdItem.spuSaleAllQty}}件</view>
+                </view>
+                <view class="spuName">{{spuInfo.pdItem.title}}</view>
+                <view class="spuTagView">
+                    <view class="spuTag">{{spuInfo.pdItem.groupType==23?'门店现货':spuInfo.pdItem.pdSpu.type==10?'品牌直发':'跨境保税'}}</view>
+                    <view wx:for="{{spuInfo.pdItem.textTags}}" wx:key="*this">{{item}}</view>
+                </view>
+                <view class="priceAndCountry">
+                    <view class="priceView">
+                        <view class="priceSymbol">￥</view>
+                        <view class="priceInfo">{{priceFormat.priceFormat(spuInfo.pdItem.discountRetailPriceMin)}}</view>
+                        <view class="priceInfoOriginal" hidden="{{spuInfo.mkDiscount==undefined}}">￥{{priceFormat.priceFormat(spuInfo.pdItem.retailPriceMin)}}</view>
+                    </view>
+                    <view class="country">
+                        <image src="{{spuInfo.pdItem.pdSpu.pdBrand.pdCountry.picUrlAll}}"></image>
+                        <view>{{spuInfo.pdItem.pdSpu.pdBrand.pdCountry.name}}</view>
+                    </view>
+                </view>
+                <view class="mkDiscountView" hidden="{{spuInfo.mkDiscount==undefined}}">
+                    <image class="discountImage" src="../../../images/spu/mkDiscount_image.png"></image>
+                    <view style="font-weight: bold;">限时折扣</view>
+                    <view class="discountSymbol">|</view>
+                    <view>{{differTimesStr}}后恢复原价</view>
+                </view>
+                <view class="subtitle">#{{spuInfo.pdItem.pdItemInfo.subtitle}}#</view>
+                <view class="description">{{spuInfo.pdItem.pdItemInfo.description}}</view>
+            </view>
+            <view bindtap="explainDeliveryShowHandle" class="explainInfo" style="margin-top: 56rpx;">
+                <view class="explainInfoTitle">配送</view>
+                <view class="explainInfoInfo">{{spuInfo.deliveryType.deliveryCopywriting}}</view>
+                <image class="explainInfoImage" src="../../../images/common/rightArrows.png"></image>
+            </view>
+            <view bindtap="explainServiceShowHandle" class="explainInfo" hidden="{{spuInfo.pdItem.groupType==23}}" style="border-top:none">
+                <view class="explainInfoTitle">服务</view>
+                <view class="explainInfoInfo">全国门店保障，品牌官方授权，全球精选好物</view>
+                <image class="explainInfoImage" src="../../../images/common/rightArrows.png"></image>
+            </view>
+            <view class="spuType" hidden="{{spuInfo.pdItem.pdSpu.skuStatus==0}}">
+                <view class="spuTypeTitle">
+                    <view>商品规格</view>
+                    <view class="spuTypeTitlePrice" hidden="{{choosedSku==null}}">
+                        <view class="chooseSkuPriceDiscount">￥{{priceFormat.priceFormat(choosedSku.discountRetailPrice)}}</view>
+                        <view class="chooseSkuPrice" hidden="{{spuInfo.mkDiscount==undefined}}">￥{{priceFormat.priceFormat(choosedSku.retailPrice)}}</view>
+                    </view>
+                </view>
+                <view class="spuTypeTable" wx:for="{{spuInfo.itemPdTypes}}" wx:for-index="typeIndex" wx:for-item="typeItem" wx:key="pdTypeId">
+                    <view class="typeTitleView">
+                        <view class="typeTitle">{{typeItem.name}}</view>
+                        <view class="typeChooseInfo" hidden="{{typeItem.choosedPdTypeVal==null}}">已选“{{typeItem.choosedPdTypeVal.name}}”</view>
+                    </view>
+                    <view bindtap="valueButtonMethod" class="typeValueTable typeValueTable_{{valueItem.displayStatus}}" data-index="{{typeIndex}}" data-pdtypeval="{{valueItem}}" style="{{valueItem.style}}" wx:for="{{typeItem.pdTypeValList}}" wx:for-index="valueIndex" wx:for-item="valueItem" wx:key="pdTypeValId">{{valueItem.name}}</view>
+                </view>
+            </view>
+            <view class="commentView" wx:if="{{spuInfo.commentTotal>0}}">
+                <view class="commentViewHeader">
+                    <view class="commentViewHeaderLeft">商品评价({{spuInfo.commentTotal}}条)</view>
+                    <view class="commentViewHeaderRight"></view>
+                </view>
+                <view class="commentCell" wx:for="{{spuInfo.commentList}}" wx:key="index">
+                    <view class="commentUserInfo">
+                        <image src="{{item.headUrl.length>10?item.headUrl:'../../../images/user/headDefaultIcon.png'}}"></image>
+                        <view>{{item.name}}</view>
+                    </view>
+                    <view class="commentInfo">
+                        <view>
+                            <van-rate readonly color="#5F7FDC" size="{{18*systemInfo.screenWidth/750}}" value="{{item.descScore}}" voidColor="#eee"></van-rate>
+                        </view>
+                        <view class="commentContent" wx:if="{{item.content.length>0||(item.content==undefined||item.content.length==0)&&item.ocCommentPics.length==0}}">{{item.content!=undefined&&item.content.length>0?item.content:'（该用户很懒，没有填写文字内容）'}}</view>
+                        <scroll-view scrollX class="commentScroll" wx:if="{{item.ocCommentPics.length!=0}}">
+                            <image class="commentScrollImage" src="{{imageItem.picUrlAll+'?x-oss-process=image/resize,w_350'}}" wx:for="{{item.ocCommentPics}}" wx:for-item="imageItem" wx:key="index"></image>
+                        </scroll-view>
+                        <view class="skunameShort">{{dateUtil.dateFormat(item.createTime,'yyyy/MM/dd')}} {{item.skunameShort}}</view>
+                    </view>
+                    <view class="commentContentBottom {{spuInfo.commentList.length==index+1?'':'commentContentBottomLine'}}"></view>
+                </view>
+                <button bindtap="commentLookMore" class="commentLookAllButton">查看全部</button>
+            </view>
+            <view class="SpuDetails" hidden="{{spuInfo.pdItem.pdSpu.pdSpuDetails.length<1}}">
+                <view class="SpuDetailsTitle">商品信息</view>
+                <view class="SpuDetailsCell" wx:for="{{spuInfo.pdItem.pdSpu.pdSpuDetails}}" wx:key="pdSpuDetailId">
+                    <view class="SpuDetailsLeft">{{item.name}}</view>
+                    <view class="SpuDetailsRight">{{item.val}}</view>
+                </view>
+            </view>
+            <view class="spuDescriptionList">
+                <view>商品详情</view>
+                <image mode="widthFix" src="{{item.picUrlAll}}?x-oss-process=image/resize,w_750" wx:for="{{spuInfo.pdItem.pdSpu.pdSpuInfoPicList}}" wx:key="pdSpuPicId"></image>
+            </view>
+            <view class="footer" style="height:{{120+(isIphoneX?68:0)}}rpx">
+                <view class="footerView">
+                    <view class="footerLeftView">
+                        <image src="../../../images/spu/shareButton.png"></image>
+                        <view>分享</view>
+                        <button bindgetuserinfo="bindGetUserInfoShare" bindtap="{{userInfo.headUrl.length>10?'shareButtonMethod':''}}" class="cellButton" openType="{{userInfo.headUrl.length>10?'':'getUserInfo'}}"></button>
+                    </view>
+                    <view class="footerLeftView">
+                        <image src="../../../images/spu/contactButton.png"></image>
+                        <view>咨询</view>
+                        <button openType="contact" sendMessageImg="{{spuInfo.pdItem.pdSpu.picUrlAll}}" sendMessagePath="/pages/user/login/login?pageType=6000&pdItemId={{options.pdItemId}}&spShopId={{spShopId}}" sendMessageTitle="{{spuInfo.pdItem.title}}" showMessageCard="{{true}}"></button>
+                    </view>
+                    <view class="footerLeftView">
+                        <image src="../../../images/spu/spu_detail_cart.png"></image>
+                        <view>购物车</view>
+                        <view class="cartNum" hidden="{{!(cartNum>0)}}">{{cartNum}}</view>
+                        <button bindtap="goCartPage"></button>
+                    </view>
+                    <view class="footerButtonView">
+                        <button class="saleStatus_0" wx:if="{{spuInfo.pdItem.saleStatus==0}}">已下架</button>
+                        <block wx:elif="{{spuInfo.pdItem.saleStatus==10}}">
+                            <button bindtap="ucSubscribeSaleButtonMethod" wx:if="{{userHaveMobile}}">{{spuInfo.pdItem.ucSubscribeSale?'取消开售提醒':'开售提醒'}}</button>
+                            <button bindgetphonenumber="getPhoneNumberSale" bindtap="getPhoneNumberSaleTap" openType="getPhoneNumber" wx:else>{{spuInfo.pdItem.ucSubscribeSale?'取消开售提醒':'开售提醒'}}</button>
+                        </block>
+                        <block wx:elif="{{spuInfo.pdItem.saleStatus==20}}">
+                            <block wx:if="{{spuInfo.pdItem.saleStockStatus==1}}">
+                                <button bindgetuserinfo="bindGetUserInfoNowBuy" bindtap="{{userInfo.headUrl.length>10?'butItNowButtonMethod':''}}" class="addCardButton" data-isaddshow="{{true}}" openType="{{userInfo.headUrl.length>10?'':'getUserInfo'}}">加入购物车</button>
+                                <button bindgetuserinfo="bindGetUserInfoNowBuy" bindtap="{{userInfo.headUrl.length>10?'butItNowButtonMethod':''}}" class="buyButton" data-isaddshow="{{false}}" openType="{{userInfo.headUrl.length>10?'':'getUserInfo'}}">立即购买</button>
+                            </block>
+                            <block wx:else>
+                                <button bindtap="ucSubscribeStockButtonMethod" wx:if="{{userHaveMobile}}">{{spuInfo.pdItem.ucSubscribeStock?'取消到货提醒':'到货提醒'}}</button>
+                                <button bindgetphonenumber="getPhoneNumberStock" bindtap="getPhoneNumberStockTap" openType="getPhoneNumber" wx:else>{{spuInfo.pdItem.ucSubscribeStock?'取消到货提醒':'到货提醒'}}</button>
+                            </block>
+                        </block>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+</view>
+<van-popup bind:close="shareSheetShowHandle" catchtouchmove="true" customStyle="background-color: transparent" position="bottom" safeAreaInsetBottom="{{false}}" show="{{shareSheetShow}}" wx:if="{{spuInfo!=null}}">
+    <view class="shareSheetView">
+        <view class="shareSheetHeader">
+            <view class="shareSheetHeaderLine"></view>
+            <view class="shareSheetHeaderTitle">分享给好友</view>
+            <view class="shareSheetHeaderLine"></view>
+        </view>
+        <view class="shareSheetConsultant" wx:if="{{spuInfo.spShopConsultant!=undefined}}">你是本店顾问{{spuInfo.spShopConsultant.name}}，越多分享，越多收获</view>
+        <view class="shareSheetButtonView">
+            <button class="shareSheetButton" openType="share">
+                <image src="../../../images/spu/share_wechat.png"></image>
+                <view class="shareSheetButtonTitle">发送给朋友</view>
+            </button>
+            <share-button btnClass="shareSheetButton shareSheetButtonMiddle" product="{{product}}" type="{{3}}">
+                <image src="../../../images/spu/share_wequan.png"></image>
+                <view class="shareSheetButtonTitle">推荐到好物圈</view>
+            </share-button>
+            <button catchtap="getSharePic" class="shareSheetButton">
+                <image src="../../../images/spu/share_download.png"></image>
+                <view class="shareSheetButtonTitle">生成海报</view>
+            </button>
+        </view>
+        <view bindtap="recommendInfoCopyMethod" class="recommendView">
+            <view class="recommendViewTitle">推荐语</view>
+            <view class="recommendViewTitle1">（点击文案复制到剪切板）</view>
+            <view class="recommendViewContent">{{spuInfo.pdItem.pdItemInfo.description}}</view>
+        </view>
+        <button catchtap="shareSheetShowHandle" class="cancelButton">取消</button>
+        <view style="height: {{isIphoneX?34:0.1}}px"></view>
+    </view>
+</van-popup>
+<van-popup bind:close="typeSheetShowHandle" catchtouchmove="true" customStyle="background-color: transparent" position="bottom" safeAreaInsetBottom="{{false}}" show="{{typeSheetShow}}" wx:if="{{spuInfo!=null}}">
+    <view class="typeSheetView">
+        <view class="typeSheetInfo">
+            <view class="typeSheetHeaderView">
+                <image bindtap="typeSheetShowHandle" class="typeSheetClose" src="../../../images/spu/type_sheet_close.png"></image>
+                <view class="typeSheetHeaderRight">
+                    <view class="typeSheetPrice">
+                        <view class="typeSheetPriceSymbol">￥</view>
+                        <view>{{priceFormat.priceFormat(choosedSku==null?spuInfo.pdItem.discountRetailPriceMin:choosedSku.discountRetailPrice)}}</view>
+                        <view class="typeSheetPriceSymbol1" hidden="{{spuInfo.pdItem.pdSpu.skuStatus==0||choosedSku!=null||spuInfo.pdItem.discountRetailPriceMin==spuInfo.pdItem.discountRetailPriceMax}}">-</view>
+                        <view hidden="{{spuInfo.pdItem.pdSpu.skuStatus==0||choosedSku!=null||spuInfo.pdItem.discountRetailPriceMin==spuInfo.pdItem.discountRetailPriceMax}}">{{priceFormat.priceFormat(spuInfo.pdItem.discountRetailPriceMax)}}</view>
+                        <view class="typeSheetPriceSymbol2" hidden="{{spuInfo.mkDiscount==undefined||choosedSku==null}}">￥{{priceFormat.priceFormat(choosedSku.retailPrice)}}</view>
+                    </view>
+                    <view class="typeSheetPdSkuTypeValsOnlyValStr" hidden="{{spuInfo.pdItem.pdSpu.skuStatus==0}}">{{choosedSku!=null?'已选择：'+choosedSku.pdSku.pdSkuTypeValsOnlyValStr:'请选择商品规格'}}</view>
+                </view>
+            </view>
+            <scroll-view scrollY class="typeSheetSroll">
+                <view class="typeSheetSpuType">
+                    <view class="spuTypeTable" wx:for="{{spuInfo.itemPdTypes}}" wx:for-index="typeIndex" wx:for-item="typeItem" wx:key="pdTypeId">
+                        <view class="typeTitleView" style="margin-left: 20rpx;">
+                            <view class="typeTitle">{{typeItem.name}}</view>
+                        </view>
+                        <block wx:for="{{typeItem.pdTypeValList}}" wx:for-index="valueIndex" wx:for-item="valueItem" wx:key="pdTypeValId">
+                            <view class="spaceTypeValueTable" style="width: 19.5rpx;border: 1rpx solid transparent;" wx:if="{{(valueIndex+2)%3==2}}"></view>
+                            <view bindtap="valueButtonMethod" class="typeValueTable typeValueTable_{{valueItem.displayStatus}}" data-index="{{typeIndex}}" data-pdtypeval="{{valueItem}}" style="{{valueItem.style}}">{{valueItem.name}}</view>
+                        </block>
+                    </view>
+                </view>
+                <view class="buyNumHandleView">
+                    <view class="buyNumHandleTitle">购买数量</view>
+                    <view class="buyNumHandleRight">
+                        <view bindtap="buyNumJian" class="buyNumJianJia {{buyNum==1?'buyNumJianJiaDisable':''}}">-</view>
+                        <view class="buyNumNum">{{buyNum}}</view>
+                        <view bindtap="buyNumJia" class="buyNumJianJia {{buyNum==99||choosedSku!=null&&buyNum==choosedSku.qtySaleAvailable?'buyNumJianJiaDisable':''}}">+</view>
+                    </view>
+                </view>
+            </scroll-view>
+            <button catchtap="butItNowCardButtonMethod" class="typeSheetButton">确定</button>
+            <view style="height: {{isIphoneX?34:0.1}}px"></view>
+        </view>
+        <image bindtap="lookBigPic" class="typeSheetImage" data-url="{{choosedSku!=null&&choosedSku.pdSku.picUrlAll.length>10?choosedSku.pdSku.picUrlAll:spuInfo.pdItem.pdSpu.picUrlAll}}" mode="aspectFill" src="{{choosedSku!=null&&choosedSku.pdSku.picUrlAll.length>10?choosedSku.pdSku.picUrlAll:spuInfo.pdItem.pdSpu.picUrlAll}}?x-oss-process=image/resize,w_200" wx:if="{{spuInfo.pdItem.pdSpu.picUrlAll.length>10}}"></image>
+    </view>
+</van-popup>
+<canvas canvasId="shareSpuImg"></canvas>
+<canvas canvasId="shareCardImg"></canvas>
+<van-popup bind:close="hideShareImg" catchtouchmove="ture" customStyle="background-color: transparent" show="{{showShareImg}}">
+    <image class="shareImage" mode="aspectFit" src="{{shareSpuPicUrl}}"></image>
+    <view bindtap="hideShareImg">
+        <button catchtap="saveImageToPhoto" class="shareImageDownLoadButton">
+            <image src="../../../images/spu/share_download.png"></image>
+            <view>保存到手机</view>
+        </button>
+    </view>
+</van-popup>
+<van-popup bind:close="explainDeliveryShowHandle" catchtouchmove="true" customStyle="background-color: transparent" position="bottom" safeAreaInsetBottom="{{false}}" show="{{explainDeliveryShow}}" wx:if="{{spuInfo!=null}}">
+    <view class="shareSheetView">
+        <view class="explainShowTitle">配送方式</view>
+        <scroll-view scrollY class="popupDeliverShowInfo">
+            <block wx:for="{{spuInfo.deliveryType.deliveryTypeList}}" wx:key="index">
+                <view class="popupDeliverTitleView">
+                    <view class="popupDeliverTitleViewLeft"></view>
+                    <view>{{item.title}}</view>
+                </view>
+                <view class="popupDeliverContent">
+                    <text>{{item.content}}</text>
+                </view>
+            </block>
+        </scroll-view>
+        <button catchtap="explainDeliveryShowHandle" class="explainShowButton">知道了</button>
+        <view style="height: {{isIphoneX?34:0.1}}px"></view>
+    </view>
+</van-popup>
+<van-popup bind:close="explainServiceShowHandle" catchtouchmove="true" customStyle="background-color: transparent" position="bottom" safeAreaInsetBottom="{{false}}" show="{{explainServiceShow}}" wx:if="{{spuInfo!=null}}">
+    <view class="shareSheetView">
+        <view class="explainShowTitle">服务保障</view>
+        <view class="explainShowInfo">
+            <text>商品全国门店保障，品牌官方授权，全球精选好物；
+
+商品本身有质量问题、快递途中损坏时，在快递签收后72小时内私信客服为你处理；
+
+非质量问题，在快递签收后7日内，保证商品未经使用及吊牌、包装完整无破损的情况下，可申请无理由退货（贴身衣物及食品等特殊商品除外）。</text>
+        </view>
+        <button catchtap="explainServiceShowHandle" class="explainShowButton">知道了</button>
+        <view style="height: {{isIphoneX?34:0.1}}px"></view>
+    </view>
+</van-popup>
+<van-popup bind:close="lookBigPicClose" catchtouchmove="ture" customStyle="background-color: #000000" safeAreaInsetBottom="{{false}}" show="{{lookBigPicShow}}">
+    <image bindtap="lookBigPicClose" class="bigPicImage" mode="aspectFit" src="{{lookBigPicUrl}}?x-oss-process=image/resize,w_750" style="height: {{systemInfo.windowHeight}}px" wx:if="{{lookBigPicUrl.length>10}}"></image>
+</van-popup>
+<wxs module="priceFormat" src="../../../utils/priceFormat.wxs" />
+<wxs module="dateUtil" src="../../../utils/dateFormat.wxs" />

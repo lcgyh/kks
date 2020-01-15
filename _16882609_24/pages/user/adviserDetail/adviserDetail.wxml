@@ -1,0 +1,58 @@
+<view class="pageInfo" wx:if="{{pageInfo!=null}}">
+    <view class="whiteView">
+        <view class="dataInfoCell">
+            <view class="dataInfoTop">{{priceFormat.priceFormat(pageInfo.consultant.amountWithDay)}}</view>
+            <view class="dataInfoBottom">今日销售额(元)</view>
+        </view>
+        <view class="dataInfoCell data2">
+            <view class="dataInfoTop">{{priceFormat.priceFormat(pageInfo.consultant.amountWithMonth)}}</view>
+            <view class="dataInfoBottom">本月销售额(元)</view>
+        </view>
+        <view class="dataInfoCell" style="border-right: none;">
+            <view class="dataInfoTop">{{priceFormat.priceFormat(pageInfo.consultant.amountWithTotal)}}</view>
+            <view class="dataInfoBottom">累计销售额(元)</view>
+        </view>
+    </view>
+    <view bindtap="goOrderDetail" class="orderCell" data-ocorderid="{{item.ocOrderId}}" wx:for="{{orderList}}" wx:key="ocOrderId">
+        <view class="orderCellTop">
+            <view class="orderCellTopLeft">
+                <image src="../../../images/order/order_type_{{item.groupType==23?'1':item.type==10?'2':'3'}}.png"></image>
+                <view>{{item.groupType==23?'门店现货':item.type==10?'品牌直发':'跨境保税'}}</view>
+                <view class="orderCellTopData">| {{dateUtil.dateFormat(item.createTime,'YYYY/MM/dd')}}</view>
+            </view>
+            <view class="orderStatus">
+                <view wx:if="{{item.groupType==23&&item.expectDeliveryType==10}}">快递或同城配送｜</view>
+                <view style="color: {{item.showStatusStyle}}">{{item.showStatusStr}}</view>
+            </view>
+        </view>
+        <view class="orderInfo orderInfoOne" wx:if="{{item.firstOcOrderDetails.length==1}}">
+            <image class="orderInfoOneImage" lazyLoad="{{true}}" mode="aspectFill" src="{{item.firstOcOrderDetails[0].picUrlAll}}?x-oss-process=image/resize,w_350"></image>
+            <view class="orderInfoOneRight">
+                <view>{{item.firstOcOrderDetails[0].title}}</view>
+                <view class="pdSkuTypeValsOnlyValStr">{{item.firstOcOrderDetails[0].skunameShort}}</view>
+            </view>
+        </view>
+        <view class="orderInfo orderInfoMore" wx:else>
+            <image class="orderInfoMoreImage" src="{{item.firstOcOrderDetails[imageIndex].picUrlAll}}?x-oss-process=image/resize,w_350" style="margin-right:{{imageIndex==3?0:22}}rpx" wx:if="{{imageIndex<3&&item.firstOcOrderDetails.length>4||item.firstOcOrderDetails.length<5}}" wx:for="{{item.firstOcOrderDetails}}" wx:for-index="imageIndex" wx:for-item="imageItem" wx:key="ocOrderDetailId">
+                <view class="orderInfoMoreImageQty">×{{imageItem.qty}}</view>
+            </image>
+            <view class="orderInfoMoreLookMore" wx:if="{{item.firstOcOrderDetails.length>4}}">查看更多</view>
+        </view>
+        <view class="orderCellBottom">
+            <view class="orderCellBottomLeft">
+                <image lazyLoad="{{true}}" mode="aspectFill" src="{{item.ucUser.headUrl.length>10?item.ucUser.headUrl:'../../../images/user/defaultIcon.png'}}"></image>
+                <view>{{item.ucUser.headUrl.length>10?item.ucUser.name:'匿名用户'}}</view>
+            </view>
+            <view class="orderCellBottomRight">
+                <view>共{{item.qty}}件</view>
+                <view class="orderCellBottomRightSymbol">|</view>
+                <view>实付:￥{{priceFormat.priceFormat(item.totalAmount)}}</view>
+                <view class="payTypeCard" wx:if="{{item.groupType==23&&item.bsPay.payType==72}}">充值卡</view>
+                <view class="payTypeWechat" wx:elif="{{item.groupType==23}}">微信支付</view>
+            </view>
+        </view>
+    </view>
+    <view class="footerView" hidden="{{orderList.length==0}}">{{page+1<totalPage?'加载中...':'没有更多了'}}</view>
+</view>
+<wxs module="priceFormat" src="../../../utils/priceFormat.wxs" />
+<wxs module="dateUtil" src="../../../utils/dateFormat.wxs" />

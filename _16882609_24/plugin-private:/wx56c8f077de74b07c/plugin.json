@@ -1,0 +1,11 @@
+{
+    "publicComponents": {
+        "share-button": "components/share-button/share-button"
+    },
+    "main": "index.js",
+    "pages": {
+        "share": "pages/share/share",
+        "share-success": "pages/share-success/share-success",
+        "about": "pages/about/about"
+    }
+}

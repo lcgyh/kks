@@ -1,0 +1,143 @@
+page {
+    background-color: #f4f4f4;
+}
+
+.listEmpty {
+    text-align: center;
+}
+
+.listEmptyImage {
+    margin-top: 30%;
+    width: 252rpx;
+    height: 252rpx;
+}
+
+.listEmptyTitle {
+    margin-top: 100rpx;
+    color: #B2B2B2;
+    font-size: 32rpx;
+}
+
+.searchInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 120rpx;
+    padding: 0 32rpx;
+    border-bottom: 1rpx solid #e6e6e6;
+    position: relative;
+    background-color: white;
+    width: 100%;
+}
+
+.searchView {
+    background-color: #f4f4f4;
+    border-radius: 15rpx;
+    height: 88rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16rpx 32rpx 16rpx;
+    width: 684rpx;
+}
+
+.searchView image {
+    height: 32rpx;
+    width: 32rpx;
+    margin-right: 16rpx;
+}
+
+.searchView view {
+    color: #b2b2b2;
+    font-size: 28rpx;
+}
+
+.categoryPageListInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.leftScroll {
+    width: 200rpx;
+    font-size: 30rpx;
+    background-color: white;
+    border-bottom: 1rpx solid #e6e6e6;
+}
+
+.rightScroll {
+    flex: 1;
+    background-color: #f4f4f4;
+}
+
+.leftViewCell {
+    height: 94rpx;
+    font-size: 30rpx;
+    color: #363737;
+    line-height: 94rpx;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    font-weight: normal;
+}
+
+.leftViewCellChoosed {
+    color: #5f7fdc;
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.leftViewCellChoosedLeft {
+    position: absolute;
+    left: 0;
+    top: 32rpx;
+    height: 30rpx;
+    width: 6rpx;
+    background-color: #5f7fdc;
+}
+
+.superCell {
+    margin-left: 32rpx;
+    margin-right: 40rpx;
+    padding-bottom: 8rpx;
+}
+
+.superName {
+    color: #363737;
+    font-size: 30rpx;
+    line-height: 30rpx;
+    padding: 32rpx 0;
+}
+
+.rightWhiteView {
+    border-radius: 10rpx;
+    background-color: white;
+}
+
+.rightCategoryCell {
+    display: inline-block;
+    margin: 32rpx 0;
+}
+
+.rightCategoryCell image {
+    height: 112rpx;
+    width: 112rpx;
+}
+
+.rightCategoryCell view {
+    color: #272727;
+    font-size: 20rpx;
+    margin-top: 22rpx;
+    overflow: hidden;
+    text-align: center;
+    height: 52rpx;
+    width: 112rpx;
+    line-height: 26rpx;
+    display: -webkit-box;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}

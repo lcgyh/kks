@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "product-recommend-editor": "./product-recommend-editor/product-recommend-editor",
+        "product-recommend-info": "./product-recommend-info/product-recommend-info"
+    }
+}

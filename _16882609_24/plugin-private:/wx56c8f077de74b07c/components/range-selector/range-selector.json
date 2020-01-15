@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "custom-mask": "../mask/mask",
+        "group-avatar": "../group-avatar/group-avatar"
+    }
+}

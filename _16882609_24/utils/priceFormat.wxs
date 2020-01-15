@@ -1,0 +1,12 @@
+var priceFormat = ({
+    priceFormat: (function(value) {
+        return (parseFloat(value).toFixed(2))
+    }),
+    priceYuanFormat: (function(value) {
+        return (parseInt(value))
+    }),
+    priceFenFormat: (function(value) {
+        return ((((parseFloat(value).toFixed(2) - parseInt(value)) * 100 < 10 ? "0" + (parseFloat(value).toFixed(2) - parseInt(value)) * 100 : (parseFloat(value).toFixed(2) - parseInt(value)) * 100)))
+    }),
+});
+module.exports = priceFormat;

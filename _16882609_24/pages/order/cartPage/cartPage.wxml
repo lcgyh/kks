@@ -1,0 +1,133 @@
+<view class="pageInfo" wx:if="{{cartInfo[0].ocCartList!=null}}">
+    <view class="headerView">
+        <view bindtap="handleChoosedIndex" class="headerButtonView {{choosedIndex==index?'headerButtonViewChoosed':''}}" data-index="{{index}}" wx:for="{{cartInfo}}" wx:key="name">
+      {{item.name}}({{item.ocCartList.normal.length+item.ocCartList.outofstock.length+item.ocCartList.unsale.length}})
+      <view hidden="{{choosedIndex!=index}}"></view>
+        </view>
+    </view>
+    <view class="infoView" style="padding-bottom: {{cartInfo[choosedIndex].ocCartList.normal.length+cartInfo[choosedIndex].ocCartList.outofstock.length+cartInfo[choosedIndex].ocCartList.unsale.length==0?0:138}}rpx">
+        <view class="emptyView" wx:if="{{cartInfo[choosedIndex].ocCartList.normal.length+cartInfo[choosedIndex].ocCartList.outofstock.length+cartInfo[choosedIndex].ocCartList.unsale.length==0}}">
+            <image class="emptyViewTopImage" src="../../../images/order/cart_empty_top.png"></image>
+            <image class="emptyViewImage" src="../../../images/order/order-list-empty.png"></image>
+            <view class="emptyViewTitle">你还没有任何{{cartInfo[choosedIndex].name}}商品哦~</view>
+            <view bindtap="goHomePage" class="emptyViewButton">逛一逛</view>
+        </view>
+        <view class="recommendWhiteView" wx:if="{{cartInfo[choosedIndex].ocCartList.normal.length+cartInfo[choosedIndex].ocCartList.outofstock.length+cartInfo[choosedIndex].ocCartList.unsale.length==0&&cartInfo[choosedIndex].recommendList.length!=0}}">
+            <view class="recommendTop">
+                <image src="../../../images/order/cart_recommend.png"></image>
+                <view>为你推荐</view>
+            </view>
+            <view class="recommendTopSub">跟好友一起买 更划算</view>
+            <view bindtap="goSpuDetail" class="spuListCell" data-pditemid="{{item.pdItemId}}" style="margin-right: {{index%2==0?40:0}}rpx;" wx:for="{{cartInfo[choosedIndex].recommendList}}" wx:key="pdItemId">
+                <image class="spuImage" lazyLoad="{{true}}" mode="aspectFill" src="{{item.pdSpu.picUrlAll}}?x-oss-process=image/resize,w_350"></image>
+                <image class="tagImage" lazyLoad="{{true}}" mode="aspectFill" src="{{item.picUrlTagAll}}" wx:if="{{item.picUrlTagAll.length>10}}"></image>
+                <view class="spuListSubtitle">#{{item.pdItemInfo.subtitle}}#</view>
+                <view class="spuTitle">{{item.pdSpu.pdBrand.name}} | {{item.title}}</view>
+                <view class="spuSpuTagView">
+                    <view class="spuSpuTag">{{item.groupType==23?'门店现货':item.pdSpu.type==10?'品牌直发':'跨境保税'}}</view>
+                    <view wx:for="{{item.textTags}}" wx:for-index="tagIndex" wx:for-item="tagItem" wx:key="*this">{{tagItem}}</view>
+                </view>
+                <view class="spuPriceAndCountry">
+                    <view class="cell20PriceView">
+                        <view class="cell20Price">￥{{priceFormat.priceFormat(item.discountRetailPriceMin)}}</view>
+                        <view class="cell20Price3" hidden="{{item.discountExistNow==false}}">￥{{priceFormat.priceFormat(item.retailPriceMin)}}</view>
+                    </view>
+                    <view class="cell20Country">
+                        <image lazyLoad="{{true}}" mode="aspectFill" src="{{item.pdSpu.pdBrand.pdCountry.picUrlAll}}?x-oss-process=image/resize,w_20"></image>
+                        <view>{{item.pdSpu.pdBrand.pdCountry.name}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="whiteView" wx:if="{{cartInfo[choosedIndex].ocCartList.normal.length!=0}}">
+            <view class="spuCell" wx:for="{{cartInfo[choosedIndex].ocCartList.normal}}" wx:key="ocCartId">
+                <view bindtouchend="touchE" bindtouchmove="touchM" bindtouchstart="touchS" class="spuCellInfo" data-occartid="{{item.ocCartId}}" style="{{item.ocCartId==operationOcCartId?txtStyle:''}}">
+                    <image bindtap="chooseCartButtonMethod" class="chooseImage" data-index="{{index}}" src="../../../images/order/cart_choose_{{item.choosed?'yes':'no'}}.png"></image>
+                    <image bindtap="goSpuDetail" class="skuImage" data-pditemid="{{item.pdItem.pdItemId}}" mode="aspectFill" src="{{item.pdItemSku.pdSku.picUrlAll.length>10?item.pdItemSku.pdSku.picUrlAll:item.pdItem.pdSpu.picUrlAll}}?x-oss-process=image/resize,w_350"></image>
+                    <view bindtap="goSpuDetail" class="cartRightView" data-pditemid="{{item.pdItem.pdItemId}}">
+                        <view class="spuName">{{item.pdItem.title}}</view>
+                        <view class="pdSkuTypeValsOnlyValStr">{{item.pdItemSku.pdSku.pdSkuTypeValsOnlyValStr}}</view>
+                        <view class="spuTagView">
+                            <view wx:for="{{item.pdItem.textTags}}" wx:for-index="tagIndex" wx:for-item="tagItem" wx:key="*this">{{tagItem}}</view>
+                        </view>
+                        <view class="cartRightBottom">
+                            <view class="buyNumHandleLeft">
+                                <view class="buyNumHandleTitle">￥{{priceFormat.priceFormat(item.pdItemSku.discountRetailPrice)}}</view>
+                                <view class="buyNumHandleTitle1" hidden="{{item.pdItem.discountExistNow==false}}">￥{{priceFormat.priceFormat(item.pdItemSku.retailPrice)}}</view>
+                            </view>
+                            <view catchtap="emptyTap" class="buyNumHandleRight">
+                                <view bindtap="buyNumJian" class="buyNumJianJia {{item.qty==1?'buyNumJianJiaDisable':''}}" data-index="{{index}}">-</view>
+                                <view class="buyNumNum">{{item.qty}}</view>
+                                <view bindtap="buyNumJia" class="buyNumJianJia {{item.qty+1>99||item.qty+1>item.qtySaleAvaiable?'buyNumJianJiaDisable':''}}" data-index="{{index}}">+</view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="bottomLineView" hidden="{{index==cartInfo[choosedIndex].ocCartList.normal.length-1}}"></view>
+                </view>
+                <view bindtap="cellDeleteMethod" class="cellDelete" data-index="{{index}}" data-type="normal">删除</view>
+            </view>
+        </view>
+        <view class="whiteView" wx:if="{{cartInfo[choosedIndex].ocCartList.outofstock.length!=0||cartInfo[choosedIndex].ocCartList.unsale.length!=0}}">
+            <view class="spuCell" wx:for="{{cartInfo[choosedIndex].ocCartList.outofstock}}" wx:key="ocCartId">
+                <view bindtouchend="touchE" bindtouchmove="touchM" bindtouchstart="touchS" class="spuCellInfo" data-occartid="{{item.ocCartId}}" style="{{item.ocCartId==operationOcCartId?txtStyle:''}}">
+                    <image class="chooseImage" src="../../../images/order/cart_choose_disable.png"></image>
+                    <image bindtap="goSpuDetail" class="skuImage" data-pditemid="{{item.pdItem.pdItemId}}" mode="aspectFill" src="{{item.pdItemSku.pdSku.picUrlAll.length>10?item.pdItemSku.pdSku.picUrlAll:item.pdItem.pdSpu.picUrlAll}}?x-oss-process=image/resize,w_350"></image>
+                    <view bindtap="goSpuDetail" class="cartRightView" data-pditemid="{{item.pdItem.pdItemId}}">
+                        <view class="spuName">{{item.pdItem.title}}</view>
+                        <view class="pdSkuTypeValsOnlyValStr">{{item.pdItemSku.pdSku.pdSkuTypeValsOnlyValStr}}</view>
+                        <view class="spuTagView">
+                            <view wx:for="{{item.pdItem.textTags}}" wx:for-index="tagIndex" wx:for-item="tagItem" wx:key="*this">{{tagItem}}</view>
+                        </view>
+                        <view class="cartRightBottom">
+                            <view class="buyNumHandleTitle">￥{{priceFormat.priceFormat(item.pdItemSku.discountRetailPrice)}}</view>
+                            <view class="buyNumHandleRightText">该商品库存不足</view>
+                        </view>
+                    </view>
+                    <view class="bottomLineView" hidden="{{index==cartInfo[choosedIndex].ocCartList.outofstock.length-1&&cartInfo[choosedIndex].ocCartList.unsale.length==0}}"></view>
+                </view>
+                <view bindtap="cellDeleteMethod" class="cellDelete" data-index="{{index}}" data-type="outofstock">删除</view>
+            </view>
+            <view class="spuCell" wx:for="{{cartInfo[choosedIndex].ocCartList.unsale}}" wx:key="ocCartId">
+                <view bindtouchend="touchE" bindtouchmove="touchM" bindtouchstart="touchS" class="spuCellInfo" data-occartid="{{item.ocCartId}}" style="{{item.ocCartId==operationOcCartId?txtStyle:''}}">
+                    <image class="chooseImage" src="{{'../../../images/order/cart_choose_disable.png'}}"></image>
+                    <image bindtap="goSpuDetail" class="skuImage" data-pditemid="{{item.pdItem.pdItemId}}" mode="aspectFill" src="{{item.pdItemSku.pdSku.picUrlAll.length>10?item.pdItemSku.pdSku.picUrlAll:item.pdItem.pdSpu.picUrlAll}}?x-oss-process=image/resize,w_350"></image>
+                    <view bindtap="goSpuDetail" class="cartRightView" data-pditemid="{{item.pdItem.pdItemId}}">
+                        <view class="spuName">{{item.pdItem.title}}</view>
+                        <view class="pdSkuTypeValsOnlyValStr">{{item.pdItemSku.pdSku.pdSkuTypeValsOnlyValStr}}</view>
+                        <view class="spuTagView">
+                            <view wx:for="{{item.pdItem.textTags}}" wx:for-index="tagIndex" wx:for-item="tagItem" wx:key="*this">{{tagItem}}</view>
+                        </view>
+                        <view class="cartRightBottom">
+                            <view class="buyNumHandleTitle">￥{{priceFormat.priceFormat(item.pdItemSku.discountRetailPrice)}}</view>
+                            <view class="buyNumHandleRightText">该商品已下架</view>
+                        </view>
+                    </view>
+                    <view class="bottomLineView" hidden="{{index==cartInfo[choosedIndex].ocCartList.unsale.length-1}}"></view>
+                </view>
+                <view bindtap="cellDeleteMethod" class="cellDelete" data-index="{{index}}" data-type="unsale">删除</view>
+            </view>
+        </view>
+    </view>
+    <view style="height: 58rpx;" wx:if="{{choosedIndex==0&&(cartInfo[choosedIndex].ocCartList.freeorderfreightamount!=undefined||cartInfo[choosedIndex].ocCartList.freeorderfreightamount!=0||cartInfo[choosedIndex].ocCartList.freight!=undefined||cartInfo[choosedIndex].ocCartList.freight!=0)&&cartInfo[choosedIndex].ocCartList.normal.length!=0}}"></view>
+    <view class="freightView" wx:if="{{choosedIndex==0&&(cartInfo[choosedIndex].ocCartList.freeorderfreightamount!=undefined||cartInfo[choosedIndex].ocCartList.freeorderfreightamount!=0||cartInfo[choosedIndex].ocCartList.freight!=undefined||cartInfo[choosedIndex].ocCartList.freight!=0)&&cartInfo[choosedIndex].ocCartList.normal.length!=0}}">
+        <view class="freightEnough" wx:if="{{chooseAllPrice>=cartInfo[choosedIndex].ocCartList.freeorderfreightamount}}">门店现货商品订单满{{priceFormat.priceFormat(cartInfo[choosedIndex].ocCartList.freeorderfreightamount)}}元包邮，已达到包邮条件，请放心下单。</view>
+        <view class="freightEnoughNo" wx:else>
+            <view>门店现货商品订单满{{priceFormat.priceFormat(cartInfo[choosedIndex].ocCartList.freeorderfreightamount)}}元包邮，还差{{priceFormat.priceFormat(cartInfo[choosedIndex].ocCartList.freeorderfreightamount-chooseAllPrice)}}元</view>
+            <view bindtap="goSpuSearchList" class="freightEnoughNoRight">
+                <view>去凑单</view>
+                <image src="../../../images/order/cart_orderadd.png"></image>
+            </view>
+        </view>
+    </view>
+    <view class="footerView" wx:if="{{cartInfo[choosedIndex].ocCartList.normal.length+cartInfo[choosedIndex].ocCartList.outofstock.length+cartInfo[choosedIndex].ocCartList.unsale.length!=0}}">
+        <view bindtap="chooseAllButtonMethod" class="allChooseView">
+            <image class="chooseImageAll" src="{{chooseAll?'../../../images/order/cart_choose_yes.png':'../../../images/order/cart_choose_no.png'}}"></image>
+            <view>全选</view>
+        </view>
+        <view class="priceAndGoOrderButtonView">
+            <view class="allPriceView">￥{{priceFormat.priceFormat(chooseAllPrice)}}</view>
+            <button bindtap="goOrderButtonMethod" class="goOrderButton">去结算({{chooseNum}})</button>
+        </view>
+    </view>
+</view>
+<wxs module="priceFormat" src="../../../utils/priceFormat.wxs" />

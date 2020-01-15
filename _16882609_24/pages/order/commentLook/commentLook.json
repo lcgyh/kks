@@ -1,0 +1,7 @@
+{
+    "navigationStyle": "custom",
+    "usingComponents": {
+        "van-popup": "../../../vant-weapp/popup/index",
+        "van-rate": "../../../vant-weapp/rate/index"
+    }
+}

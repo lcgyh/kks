@@ -1,0 +1,10 @@
+<view class="changeShopPage">
+    <view bindtap="cellChooseShop" class="shopCell" data-spshopid="{{item.spShop.spShopId}}" wx:for="{{shopList}}" wx:key="spShopId">
+        <image class="shopPic" mode="aspectFill" src="{{item.spShop.picUrlAll.length>10?item.spShop.picUrlAll:'../../../images/user/defaultShop.png'}}"></image>
+        <view class="headerRightView">
+            <view class="shopName">{{item.spShop.sname}} × KKID联名店</view>
+            <view class="shopAdress">{{item.spShop.city.name}}{{item.spShop.area.name}}{{item.spShop.address}}</view>
+        </view>
+        <view class="chooseView" hidden="{{item.spShop.spShopId!=chooseSpShopId}}">当前店铺</view>
+    </view>
+</view>

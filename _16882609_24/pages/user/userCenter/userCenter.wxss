@@ -1,0 +1,250 @@
+page {
+    background-color: #f4f4f4;
+}
+
+.userCenter {
+    position: relative;
+}
+
+.navBarView {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 46px;
+    z-index: 99;
+}
+
+.navBarTitle {
+    color: white;
+    line-height: 46px;
+    font-size: 38rpx;
+    font-weight: bold;
+    text-align: center;
+}
+
+.headerBackImage {
+    position: absolute;
+    z-index: -1;
+    width: 750rpx;
+    height: 706rpx;
+}
+
+.userIconView {
+    height: 208rpx;
+    text-align: center;
+}
+
+.userIconImage {
+    width: 152rpx;
+    height: 152rpx;
+    border-radius: 50%;
+    border: 4rpx solid white;
+    background-color: white;
+}
+
+.userName {
+    color: white;
+    font-weight: bold;
+    font-size: 32rpx;
+    line-height: 32rpx;
+}
+
+.userInfoButton {
+    position: absolute;
+    left: 295rpx;
+    right: 295rpx;
+    height: 205rpx;
+    background-color: transparent;
+}
+
+.userInfoButton::after {
+    border: none;
+}
+
+.whiteViewAdviser {
+    margin-top: 32rpx;
+    margin-left: 40rpx;
+    margin-right: 40rpx;
+    border-radius: 10rpx;
+    background-color: white;
+    height: 234rpx;
+}
+
+.dataInfoCell {
+    margin-top: 32rpx;
+    height: 76rpx;
+    display: inline-block;
+    border-right: 1rpx solid #e6e6e6;
+    width: 217rpx;
+}
+
+.dataInfoTop {
+    height: 48rpx;
+    line-height: 48rpx;
+    font-weight: bold;
+    color: #363737;
+    font-size: 40rpx;
+    text-align: center;
+    overflow: hidden;
+}
+
+.dataInfoBottom {
+    margin-top: 8rpx;
+    height: 20rpx;
+    line-height: 20rpx;
+    color: #B2B2B2;
+    font-size: 20rpx;
+    text-align: center;
+    overflow: hidden;
+}
+
+.whiteViewOrder {
+    margin-top: 32rpx;
+    margin-left: 40rpx;
+    margin-right: 40rpx;
+    border-radius: 10rpx;
+    background-color: white;
+    height: 268rpx;
+}
+
+.allOrderView {
+    height: 94rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 32rpx;
+    border-bottom: 1rpx solid #e6e6e6;
+}
+
+.allOrderLeft {
+    color: #272727;
+    font-size: 30rpx;
+    font-weight: bold;
+}
+
+.allOrderRightView {
+    height: 94rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.allOrderRight {
+    color: #b2b2b2;
+    font-size: 22rpx;
+}
+
+.allOrderImage {
+    height: 20rpx;
+    width: 20rpx;
+}
+
+.orderStatusView {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.orderStatusViewImage {
+    margin-top: 22rpx;
+    height: 58rpx;
+    width: 58rpx;
+}
+
+.orderStatusViewInfo {
+    margin-top: 10rpx;
+    width: 100rpx;
+    position: relative;
+}
+
+.orderStatusViewTitle {
+    margin-top: 10rpx;
+    color: #272727;
+    font-size: 20rpx;
+}
+
+.orderStatusViewDots {
+    position: absolute;
+    top: 18rpx;
+    left: 65rpx;
+    background-color: #ff2344;
+    font-size: 16rpx;
+    line-height: 22rpx;
+    color: white;
+    height: 22rpx;
+    min-width: 10rpx;
+    border-radius: 11rpx;
+    padding: 0 6rpx;
+}
+
+.whiteView {
+    margin: 32rpx 40rpx;
+    background-color: white;
+    padding: 0 32rpx;
+    border-radius: 10rpx;
+}
+
+.cellView {
+    height: 94rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.cellViewBottomLine {
+    border-bottom: 1rpx solid #e6e6e6;
+}
+
+.cellLeftView {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.cellLeftImage {
+    height: 36rpx;
+    width: 36rpx;
+    margin-right: 8rpx;
+}
+
+.cellTitle {
+    color: #272727;
+    font-size: 26rpx;
+}
+
+.cellRightView {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.cellRightTitle {
+    color: #B2B2B2;
+    font-size: 24rpx;
+    margin-right: 16rpx;
+}
+
+.cellArrow {
+    height: 20rpx;
+    width: 20rpx;
+}
+
+.cellButton {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: transparent;
+}
+
+.cellButton::after {
+    border: none;
+}
